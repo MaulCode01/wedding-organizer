@@ -2,6 +2,23 @@
 <x-slot:title>Wedding Organizer - Home page</x-slot:title>
 <main class="main">
 
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+
     <section id="hero" class="hero section">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="hero-wrapper">
@@ -11,10 +28,10 @@
                 <div class="content-header">
                   <span class="hero-label">
                     <i class="bi bi-house-heart field-icon"></i>
-                    Nikah Gak Harus Ribet
+                    {{ $heroClient->label }}
                   </span>
-                  <h1>Buat Momen Sakralmu Lebih Istimewa</h1>
-                  <p>Dari konsep sampai hari H, biar kami yang atur. Kamu tinggal bilang ‘SAH’</p>
+                  <h1>{{ $heroClient->title }}</h1>
+                  <p>{{ $heroClient->SubTitle }}</p>
                 </div>
 
                 <div class="search-container" data-aos="fade-up" data-aos-delay="300">
@@ -23,46 +40,67 @@
                     <p>Anda bisa melakukan booking tanpa harus login. Cukup pilih paket yang diinginkan dan isi data pemesan, tim kami akan segera menghubungi Anda!</p>
                   </div>
 
-                  <form action="" class="property-search-form">
+                  <form action="{{ route('booking.store') }}" method="POST" class="property-search-form">
+                    @csrf
                     <div class="search-grid">
                     <div class="search-field">
                         <label for="search-location" class="field-label">Nama Lengkap</label>
-                        <input type="text" id="search-location" name="location" placeholder="Enter city or neighborhood" required="">
+                        <input type="text" id="search-location" name="nama_lengkap" placeholder="Enter city or neighborhood" required="">
                         <i class="bi bi-person field-icon"></i>
+                        @error('nama_lengkap')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="search-field">
                         <label for="search-location" class="field-label">Nomor Whats App/Text</label>
-                        <input type="number" id="search-location" name="location" placeholder="Enter city or neighborhood" required="">
+                        <input type="number" id="search-location" name="kontak" placeholder="Enter city or neighborhood" required="">
                         <i class="bi bi-telephone field-icon"></i>
+                        @error('kontak')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                       </div>
+
                       <div class="search-field">
                         <label for="search-location" class="field-label">Lokasi Acara</label>
-                        <input type="text" id="search-location" name="location" placeholder="Enter city or neighborhood" required="">
+                        <input type="text" id="search-location" name="lokasi_acara" placeholder="Enter city or neighborhood" required="">
                         <i class="bi bi-geo-alt field-icon"></i>
+                        @error('lokasi_acara')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                       </div>
+
                       <div class="search-field">
                         <label for="search-location" class="field-label">Tanggal Acara</label>
-                        <input type="date" id="search-location" name="location" placeholder="Enter city or neighborhood" required="">
+                        <input type="date" id="search-location" name="tanggal_acara" placeholder="Enter city or neighborhood" required="">
                         <i class="bi bi-calendar field-icon"></i>
+                        @error('tanggal_acara')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                       </div>
 
                       <div class="search-field">
                         <label for="search-type" class="field-label">Pilih</label>
-                        <select id="search-type" name="property_type" required="">
+                        <select id="search-type" name="kategori" required="">
                           <option value="">Kategori Paket</option>
-                          <option value="house">Wedding</option>
-                          <option value="apartment">Prewed</option>
-                          <option value="condo">Dekorasi</option>
-                          <option value="villa">Dokumentasi</option>
-                          <option value="commercial">Mua & Busana</option>
+                          <option value="wedding">Wedding</option>
+                          <option value="prewed">Prewed</option>
+                          <option value="dekorasi">Dekorasi</option>
+                          <option value="dokumentasi">Dokumentasi</option>
+                          <option value="mua & busana">Mua & Busana</option>
                         </select>
                         <i class="bi bi-building field-icon"></i>
+                        @error('kateori')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                       </div>
 
                       <div class="search-field">
-                        <label for="search-location" class="field-label">Detail Kebutuhan</label>
-                        <input type="text" id="search-location" name="location" placeholder="Enter city or neighborhood">
+                        <label for="search-location" class="field-label">Catatan</label>
+                        <input type="text" id="search-location" name="catatan" placeholder="Enter city or neighborhood">
                         <i class="bi bi-geo-alt field-icon"></i>
+                        @error('catatan')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                       </div>
                     </div>
 
@@ -74,12 +112,16 @@
                 </div>
               </div>
             </div>
-            <!-- End Hero Content -->
 
             <div class="col-lg-5">
               <div class="hero-visual" data-aos="fade-left" data-aos-delay="400">
                 <div class="visual-container">
                   <div class="featured-property">
+                    @if ($heroClient->image_1)
+                        <img src="{{ asset('Heroimg/' . $heroClient->image_1) }}" alt="Featured Property" class="img-fluid">
+                    @else
+                        <img src="{{ asset('aset/image/wedding-3.jpg') }}" alt="Featured Property" class="img-fluid">
+                    @endif
                     <img src="{{ asset('aset/image/wedding-3.jpg') }}" alt="Featured Property" class="img-fluid">
                     <div class="property-info">
                       <div class="property-details">
@@ -90,34 +132,19 @@
 
                   <div class="overlay-images">
                     <div class="overlay-img overlay-1">
-                      <img src="{{ asset('aset/image/wedding-2.jpg') }}" alt="Interior View" class="img-fluid">
+                    @if ($heroClient->image_2)
+                        <img src="{{ asset('Heroimg/' . $heroClient->image_2) }}" alt="Interior View" class="img-fluid">
+                    @else
+                        <img src="{{ asset('aset/image/wedding-2.jpg') }}" alt="Interior View" class="img-fluid">
+                    @endif
                     </div>
                     <div class="overlay-img overlay-2">
-                      <img src="{{ asset('aset/image/wedding-1.jpg') }}" alt="Exterior View" class="img-fluid">
+                    @if ($heroClient->image_3)
+                        <img src="{{ asset('Heroimg/' . $heroClient->image_3) }}" alt="Exterior View" class="img-fluid">
+                    @else
+                        <img src="{{ asset('aset/image/wedding-1.jpg') }}" alt="Exterior View" class="img-fluid">
+                    @endif
                     </div>
-                  </div>
-
-                  <div class="agent-card">
-                    <div class="agent-profile">
-                      <img src="assets/img/real-estate/agent-7.webp" alt="Agent Profile" class="agent-photo">
-                      <div class="agent-info">
-                        <h4>Michael Chen</h4>
-                        <p>Senior Property Advisor</p>
-                        <div class="agent-rating">
-                          <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                          </div>
-                          <span class="rating-text">5.0 (94 reviews)</span>
-                        </div>
-                      </div>
-                    </div>
-                    <button class="contact-agent-btn">
-                      <i class="bi bi-whatsapp"></i>
-                    </button>
                   </div>
                 </div>
               </div>
@@ -163,7 +190,7 @@
                 <div class="property-hero-content">
                     <div class="property-header">
                     <div class="property-info">
-                        <h2><a href="paket-premium.html">Wedding Premium Outdoor</a></h2>
+                        <h2>Wedding Premium Outdoor</h2>
                         <div class="property-address">
                         <i class="bi bi-geo-alt-fill"></i>
                         <span>Jakarta & Sekitarnya</span>
@@ -175,8 +202,6 @@
                     Paket lengkap dengan dekorasi mewah, MUA profesional, dokumentasi video & foto, serta catering untuk 500 undangan.
                     </p>
                     <div class="property-actions-main">
-                    <a href="paket-premium.html" class="btn-primary-custom">Pesan Sekarang</a>
-                    <a href="paket-premium.html" class="btn-outline-custom">Lihat Detail</a>
                     <div class="property-listing-info">
                         <span class="listing-status for-sale">Best Seller</span>
                         <span class="listing-date">Promo Bulan Ini</span>
@@ -198,7 +223,7 @@
                     <div class="sidebar-property-badge hot">Favorit</div>
                     </div>
                     <div class="sidebar-property-content">
-                    <h4><a href="paket-intimate.html">Paket Intimate Wedding</a></h4>
+                    <h4>Paket Intimate Wedding</h4>
                     <div class="sidebar-location">
                         <i class="bi bi-heart"></i>
                         <span>Private Venue</span>
@@ -209,7 +234,6 @@
                     </div>
                     <div class="sidebar-price-row">
                         <div class="sidebar-price">Rp 35.000.000</div>
-                        <a href="paket-intimate.html" class="sidebar-btn">Lihat</a>
                     </div>
                     </div>
                 </div>
@@ -221,7 +245,7 @@
                     <div class="sidebar-property-badge new">Baru</div>
                     </div>
                     <div class="sidebar-property-content">
-                    <h4><a href="paket-prewedding.html">Paket Prewedding Eksklusif</a></h4>
+                    <h4>Paket Prewedding Eksklusif</h4>
                     <div class="sidebar-location">
                         <i class="bi bi-camera"></i>
                         <span>Indoor & Outdoor</span>
@@ -232,7 +256,6 @@
                     </div>
                     <div class="sidebar-price-row">
                         <div class="sidebar-price">Rp 15.000.000</div>
-                        <a href="paket-prewedding.html" class="sidebar-btn">Lihat</a>
                     </div>
                     </div>
                 </div>
@@ -345,133 +368,128 @@
 
     </section> --}}
 
-    <section id="why-us" class="why-us section">
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Kenapa Memilih Kami?</h2>
-            <p>Kami hadir untuk menjadikan hari bahagia Anda lebih berkesan, indah, dan tak terlupakan.</p>
-        </div><!-- End Section Title -->
+<section id="why-us" class="why-us section">
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Kenapa Memilih Kami?</h2>
+        <p>Kami hadir untuk menjadikan hari bahagia Anda lebih berkesan, indah, dan tak terlupakan.</p>
+    </div><!-- End Section Title -->
 
-  <div class="container" data-aos="fade-up" data-aos-delay="100">
-    <div class="row gy-4">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4">
 
-      <!-- Left Content -->
-      <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
-        <div class="content">
-          <h3>Wujudkan Pernikahan Impian Anda Bersama Kami</h3>
-          <p>Kami berpengalaman mengatur berbagai konsep pernikahan mulai dari intimate wedding hingga resepsi mewah. Dengan tim profesional dan vendor terpercaya, setiap detail acara akan dirancang dengan sempurna.</p>
+        <!-- Left Content -->
+        <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
+            <div class="content">
+            <h3>Wujudkan Pernikahan Impian Anda Bersama Kami</h3>
+            <p>Kami berpengalaman mengatur berbagai konsep pernikahan mulai dari intimate wedding hingga resepsi mewah. Dengan tim profesional dan vendor terpercaya, setiap detail acara akan dirancang dengan sempurna.</p>
 
-          <div class="features-list">
-            <div class="feature-item d-flex align-items-center mb-3">
-              <div class="icon-wrapper me-3">
-                <i class="bi bi-heart-fill"></i>
-              </div>
-              <div>
-                <h5>Konsep Eksklusif & Personal</h5>
-                <p>Setiap pernikahan dirancang sesuai kepribadian dan cerita cinta Anda.</p>
-              </div>
+            <div class="features-list">
+                <div class="feature-item d-flex align-items-center mb-3">
+                <div class="icon-wrapper me-3">
+                    <i class="bi bi-heart-fill"></i>
+                </div>
+                <div>
+                    <h5>Konsep Eksklusif & Personal</h5>
+                    <p>Setiap pernikahan dirancang sesuai kepribadian dan cerita cinta Anda.</p>
+                </div>
+                </div>
+
+                <div class="feature-item d-flex align-items-center mb-3">
+                <div class="icon-wrapper me-3">
+                    <i class="bi bi-emoji-smile"></i>
+                </div>
+                <div>
+                    <h5>Tim Profesional & Ramah</h5>
+                    <p>Didukung oleh MUA, fotografer, dan dekorator berpengalaman di bidangnya.</p>
+                </div>
+                </div>
+
+                <div class="feature-item d-flex align-items-center mb-3">
+                <div class="icon-wrapper me-3">
+                    <i class="bi bi-music-note-beamed"></i>
+                </div>
+                <div>
+                    <h5>Layanan Lengkap</h5>
+                    <p>Dari dekorasi, catering, dokumentasi, hingga hiburan dalam satu paket.</p>
+                </div>
+                </div>
+
+                <div class="feature-item d-flex align-items-center mb-3">
+                <div class="icon-wrapper me-3">
+                    <i class="bi bi-star-fill"></i>
+                </div>
+                <div>
+                    <h5>Ratusan Klien Bahagia</h5>
+                    <p>Lebih dari 500 pasangan telah mempercayakan hari spesialnya kepada kami.</p>
+                </div>
+                </div>
             </div>
-
-            <div class="feature-item d-flex align-items-center mb-3">
-              <div class="icon-wrapper me-3">
-                <i class="bi bi-emoji-smile"></i>
-              </div>
-              <div>
-                <h5>Tim Profesional & Ramah</h5>
-                <p>Didukung oleh MUA, fotografer, dan dekorator berpengalaman di bidangnya.</p>
-              </div>
             </div>
-
-            <div class="feature-item d-flex align-items-center mb-3">
-              <div class="icon-wrapper me-3">
-                <i class="bi bi-music-note-beamed"></i>
-              </div>
-              <div>
-                <h5>Layanan Lengkap</h5>
-                <p>Dari dekorasi, catering, dokumentasi, hingga hiburan dalam satu paket.</p>
-              </div>
-            </div>
-
-            <div class="feature-item d-flex align-items-center mb-3">
-              <div class="icon-wrapper me-3">
-                <i class="bi bi-star-fill"></i>
-              </div>
-              <div>
-                <h5>Ratusan Klien Bahagia</h5>
-                <p>Lebih dari 500 pasangan telah mempercayakan hari spesialnya kepada kami.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="cta-buttons mt-4">
-            <a href="#paket" class="btn btn-primary me-3">Lihat Paket Kami</a>
-            <a href="#contact" class="btn btn-outline-primary">Konsultasi Gratis</a>
-          </div>
         </div>
-      </div>
-      <!-- End Left Content -->
+        <!-- End Left Content -->
 
-      <!-- Right Stats -->
-      <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
-        <div class="stats-section">
-          <div class="row gy-4">
-            <div class="col-md-6">
-              <div class="stat-card text-center">
-                <div class="stat-icon mb-3">
-                  <i class="bi bi-people-fill"></i>
+        <!-- Right Stats -->
+        <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
+            <div class="stats-section">
+            <div class="row gy-4">
+                <div class="col-md-6">
+                <div class="stat-card text-center">
+                    <div class="stat-icon mb-3">
+                    <i class="bi bi-people-fill"></i>
+                    </div>
+                    <div class="stat-number">
+                    <span data-purecounter-start="0" data-purecounter-end="500" data-purecounter-duration="2" class="purecounter"></span>+
+                    </div>
+                    <div class="stat-label">Pernikahan Berhasil</div>
+                    <p>Dari intimate hingga resepsi besar, semua berjalan lancar & berkesan.</p>
                 </div>
-                <div class="stat-number">
-                  <span data-purecounter-start="0" data-purecounter-end="500" data-purecounter-duration="2" class="purecounter"></span>+
                 </div>
-                <div class="stat-label">Pernikahan Berhasil</div>
-                <p>Dari intimate hingga resepsi besar, semua berjalan lancar & berkesan.</p>
-              </div>
-            </div>
 
-            <div class="col-md-6">
-              <div class="stat-card text-center">
-                <div class="stat-icon mb-3">
-                  <i class="bi bi-star"></i>
+                <div class="col-md-6">
+                <div class="stat-card text-center">
+                    <div class="stat-icon mb-3">
+                    <i class="bi bi-star"></i>
+                    </div>
+                    <div class="stat-number">
+                    <span data-purecounter-start="0" data-purecounter-end="98" data-purecounter-duration="2" class="purecounter"></span>%
+                    </div>
+                    <div class="stat-label">Kepuasan Klien</div>
+                    <p>Mayoritas pasangan menilai layanan kami melebihi ekspektasi.</p>
                 </div>
-                <div class="stat-number">
-                  <span data-purecounter-start="0" data-purecounter-end="98" data-purecounter-duration="2" class="purecounter"></span>%
                 </div>
-                <div class="stat-label">Kepuasan Klien</div>
-                <p>Mayoritas pasangan menilai layanan kami melebihi ekspektasi.</p>
-              </div>
-            </div>
 
-            <div class="col-md-6">
-              <div class="stat-card text-center">
-                <div class="stat-icon mb-3">
-                  <i class="bi bi-clock-history"></i>
+                <div class="col-md-6">
+                <div class="stat-card text-center">
+                    <div class="stat-icon mb-3">
+                    <i class="bi bi-clock-history"></i>
+                    </div>
+                    <div class="stat-number">
+                    <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="2" class="purecounter"></span>+
+                    </div>
+                    <div class="stat-label">Tahun Pengalaman</div>
+                    <p>Kami telah dipercaya lebih dari satu dekade di industri wedding organizer.</p>
                 </div>
-                <div class="stat-number">
-                  <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="2" class="purecounter"></span>+
                 </div>
-                <div class="stat-label">Tahun Pengalaman</div>
-                <p>Kami telah dipercaya lebih dari satu dekade di industri wedding organizer.</p>
-              </div>
-            </div>
 
-            <div class="col-md-6">
-              <div class="stat-card text-center">
-                <div class="stat-icon mb-3">
-                  <i class="bi bi-award-fill"></i>
+                <div class="col-md-6">
+                <div class="stat-card text-center">
+                    <div class="stat-icon mb-3">
+                    <i class="bi bi-award-fill"></i>
+                    </div>
+                    <div class="stat-number">
+                    <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="2" class="purecounter"></span>+
+                    </div>
+                    <div class="stat-label">Penghargaan</div>
+                    <p>Diakui sebagai salah satu WO terbaik dengan standar layanan premium.</p>
                 </div>
-                <div class="stat-number">
-                  <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="2" class="purecounter"></span>+
                 </div>
-                <div class="stat-label">Penghargaan</div>
-                <p>Diakui sebagai salah satu WO terbaik dengan standar layanan premium.</p>
-              </div>
             </div>
-          </div>
+            </div>
         </div>
-      </div>
-      <!-- End Right Stats -->
+        <!-- End Right Stats -->
 
+        </div>
     </div>
-  </div>
 </section>
 
 

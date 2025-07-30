@@ -22,6 +22,7 @@
 
 <script src="{{ asset('dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('dashboard/js/main.js') }}"></script>
+<script src="{{ asset('aset/js/script-admin.js') }}"></script>
 
 </body>
 </html>

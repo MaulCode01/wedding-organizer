@@ -8,5 +8,6 @@ Route::controller(AuthContoller::class)->group(function(){
     Route::post('/login', 'login')->name('auth.login');
 
     Route::get('/authentikasi/register', 'showRegister')->name('auth.show.logout');
-    Route::post('logout', 'logout')->name('auth.logout');
+    Route::post('/create/akun', [AuthContoller::class, 'createAcount'])->name('auth.register.create');
+    Route::post('/logout', 'logout')->name('auth.logout');
 });

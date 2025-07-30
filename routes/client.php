@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\admin\BookingController;
 use App\Http\Controllers\client\AboutController;
 use App\Http\Controllers\client\HeroController;
 use App\Http\Controllers\client\ProdukController;
 use Illuminate\Support\Facades\Route;
+
+Route::post('/client/booking', [BookingController::class, 'storeBooking'])->name('booking.store');
+
 
 Route::get('/', [HeroController::class, 'index'])->name('page.hero');
 Route::get('/client/contact-us', [HeroController::class, 'contact'])->name('page.contact');

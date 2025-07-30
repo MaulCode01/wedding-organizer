@@ -136,13 +136,6 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link {{ request()->routeIs('admin.testimoni') ? '' : 'collapsed' }}" href="{{ route('admin.testimoni') }}">
-            <i class="bi bi-star"></i>
-            <span>Testimoni</span>
-        </a>
-    </li>
-
-    <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('admin.data-pengguna') ? '' : 'collapsed' }}" href="{{ route('admin.data-pengguna') }}">
             <i class="bi bi-person"></i>
             <span>Data Pengguna</span>

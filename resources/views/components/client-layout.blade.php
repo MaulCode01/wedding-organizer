@@ -8,6 +8,7 @@
     <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('aset/css/client/style-page.css') }}" rel="stylesheet">
 
     <title>{{ $title }}</title>
 </head>

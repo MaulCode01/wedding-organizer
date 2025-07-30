@@ -20,15 +20,18 @@
         <div class="row justify-content-center">
           <div class="col-lg-10">
             <div class="hero-content text-center" data-aos="zoom-in" data-aos-delay="200">
-                <h2>Mewujudkan Pernikahan Impian Sejak 2012</h2>
-                <p class="hero-description">Kami adalah tim Wedding Organizer profesional yang telah dipercaya ratusan pasangan untuk merancang hari bahagia mereka. Setiap detail acara kami wujudkan dengan cinta, kreativitas, dan dedikasi agar momen Anda menjadi kenangan terindah seumur hidup.
-                </p>
+                <h2>{{ $aboutClient->title }}</h2>
+                <p class="hero-description">{{ $aboutClient->SubTitle }}</p>
             </div>
             <div class="dual-image-layout" data-aos="fade-up" data-aos-delay="300">
               <div class="row g-4 align-items-center">
                 <div class="col-lg-6">
                   <div class="primary-image-wrap">
-                    <img src="{{ asset('aset/image/wedding-3.jpg') }}" alt="Luxury Property" class="img-fluid">
+                    @if ($aboutClient->image_1)
+                        <img src="{{ asset('Aboutimg/' . $aboutClient->image_1) }}" alt="Luxury Property" class="img-fluid">
+                    @else
+                        <img src="{{ asset('aset/image/wedding-3.jpg') }}" alt="Luxury Property" class="img-fluid">
+                    @endif
                     <div class="floating-badge" data-aos="zoom-in" data-aos-delay="400">
                       <div class="badge-content">
                         <i class="bi bi-award"></i>
@@ -39,7 +42,11 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="secondary-image-wrap">
-                    <img src="{{ asset('aset/image/wedding-4.jpg') }}" alt="Professional Agent" class="img-fluid">
+                    @if ($aboutClient->image_2)
+                        <img src="{{ asset('Aboutimg/' . $aboutClient->image_2) }}" alt="Luxury Property" class="img-fluid">
+                    @else
+                        <img src="{{ asset('aset/image/wedding-4.jpg') }}" alt="Luxury Property" class="img-fluid">
+                    @endif
                   </div>
                 </div>
               </div>

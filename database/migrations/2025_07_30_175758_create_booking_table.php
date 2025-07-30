@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('about', function (Blueprint $table) {
+        Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('SubTitle');
-            $table->string('alamat');
+            $table->string('nama_lengkap');
             $table->string('kontak');
-            $table->string('image_1')->nullable();
-            $table->string('image_2')->nullable();
+            $table->string('lokasi_acara');
+            $table->date('tanggal_acara');
+            $table->text('catatan')->nullable();
+            $table->string('kategori');
+            $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('about');
+        Schema::dropIfExists('booking');
     }
 };

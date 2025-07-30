@@ -5,7 +5,7 @@
           <a href="{{ route('page.hero') }}" class="logo d-flex align-items-center">
             <span class="sitename">Diary Project</span>
           </a>
-          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+          <p>Kami adalah tim Wedding Organizer profesional yang telah dipercaya ratusan pasangan untuk merancang hari bahagia mereka. Setiap detail acara kami wujudkan dengan cinta, kreativitas, dan dedikasi agar momen Anda menjadi kenangan terindah seumur hidup.</p>
           <div class="social-links d-flex mt-4">
             <a href=""><i class="bi bi-twitter-x"></i></a>
             <a href=""><i class="bi bi-facebook"></i></a>
@@ -42,7 +42,6 @@
           <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
           <p><strong>Email:</strong> <span>info@example.com</span></p>
         </div> --}}
-
       </div>
     </div>
 

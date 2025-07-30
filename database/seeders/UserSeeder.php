@@ -14,8 +14,15 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         AuthModel::create([
-            'username' => 'admin',
+            'username' => 'Adam Panji',
             'email' => 'admin@gmail',
+            'password' => Hash::make('password'),
+            'role' => 'admin'
+        ]);
+
+        AuthModel::create([
+            'username' => 'Muhammad Wildan',
+            'email' => 'admin2@gmail',
             'password' => Hash::make('password'),
             'role' => 'admin'
         ]);

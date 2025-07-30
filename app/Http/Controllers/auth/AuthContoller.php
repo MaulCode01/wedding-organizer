@@ -17,42 +17,45 @@ class AuthContoller extends Controller
         $view = path_view('auth.authentikasi');
         return view($view);
     }
-
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $credential = $request->validate([
-            'username' => ['required'],
+            'email' => ['required', 'email'],
             'password' => ['required']
         ]);
 
-        $authentication = AuthModel::where('username', $credential['username'])->first();
-        if(!$authentication){
+        $authentication = AuthModel::where('email', $credential['email'])->first();
+
+        if (!$authentication) {
             return back()->withErrors([
-                'username' => 'Username Anda tidak tersedia'
+                'email' => 'Email Anda tidak terdaftar'
             ]);
         }
 
-        if(!Hash::check($credential['password'], $authentication->password)){
+        if (!Hash::check($credential['password'], $authentication->password)) {
             return back()->withErrors([
-                'password' => 'Password Anda Salah'
+                'password' => 'Password Anda salah'
             ]);
         }
 
-        if(Auth::attempt($credential)){
+        if (Auth::attempt(['email' => $credential['email'], 'password' => $credential['password']])) {
             $request->session()->regenerate();
+
             $role = $authentication->role;
 
             session()->flash('success', 'Selamat Datang Kembali');
 
-            return match($role){
+            return match ($role) {
                 'admin' => redirect()->route('dashboard-admin'),
-                default => back()->withErrors(['username' => 'username tidak dikenali'])
+                'client' => redirect()->route('page.hero'),
+                default => back()->withErrors(['email' => 'Role tidak dikenali']),
             };
-
-        } else {
-            return back()->withErrors([
-                "username" => 'username atau password salah'
-            ]);
         }
+
+        return back()->withErrors([
+            "email" => 'Email atau password salah'
+        ]);
+
 
     }
 
@@ -66,11 +69,32 @@ class AuthContoller extends Controller
         return redirect()->route('page.hero');
     }
 
-
-
-
     public function showRegister(){
         $view = path_view('auth.registrasi');
         return view($view);
+    }
+
+    public function createAcount(Request $request){
+        $validated = $request->validate([
+            'username' => 'required|string|max:50',
+            'email' => 'required|email|unique:auth,email',
+            'password' => 'required|min:8'
+        ], [
+            'username.required' => 'Username tidak boleh kosong',
+            'email.required' => 'Email tidak boleh kosong',
+            'password.required' => 'Password tidak boleh kosong',
+            'username.max' => 'Tidak boleh lebih dari 50 karakter',
+            'email.unique' => 'Email yang Anda masukan sudah tersedia',
+            'password.min' => 'Password tidak boleh kurang dari 8 karakter',
+        ]);
+
+        $UserCreate = AuthModel::create([
+            'username' => $validated['username'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'role' => 'client'
+        ]);
+
+        return redirect()->route('auth.show.login')->with('success', 'Akun Anda berhasil dibuat');
     }
 }
