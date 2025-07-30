@@ -14,8 +14,11 @@
 <body>
 <x-admin-sidebar />
 
+<main id="main" class="main">
 
     {{ $slot }}
+
+</main>
 
 <script src="{{ asset('dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('dashboard/js/main.js') }}"></script>

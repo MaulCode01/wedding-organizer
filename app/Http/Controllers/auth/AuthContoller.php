@@ -27,7 +27,7 @@ class AuthContoller extends Controller
         $authentication = AuthModel::where('username', $credential['username'])->first();
         if(!$authentication){
             return back()->withErrors([
-                'username' => 'Email Anda tidak tersedia'
+                'username' => 'Username Anda tidak tersedia'
             ]);
         }
 

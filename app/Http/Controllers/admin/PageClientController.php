@@ -11,14 +11,12 @@ class PageClientController extends Controller
 {
     public function berandaClient(){
         $view = path_view('admin.page.page-client');
+        return view($view);
     }
 
 
     public function tentangClient(){
         $view = path_view('admin.page.page-about-client');
-    }
-
-    public function kontakClient(){
-        $view = path_view(view: 'admin.page.page-contact-client');
+        return view($view);
     }
 }

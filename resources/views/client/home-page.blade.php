@@ -19,8 +19,8 @@
 
                 <div class="search-container" data-aos="fade-up" data-aos-delay="300">
                   <div class="search-header">
-                    <h3>Start Your Property Search</h3>
-                    <p>Discover thousands of verified listings</p>
+                    <h3>Mau Pesan Paket Tanpa Ribet?</h3>
+                    <p>Anda bisa melakukan booking tanpa harus login. Cukup pilih paket yang diinginkan dan isi data pemesan, tim kami akan segera menghubungi Anda!</p>
                   </div>
 
                   <form action="" class="property-search-form">
@@ -43,25 +43,25 @@
                       <div class="search-field">
                         <label for="search-location" class="field-label">Tanggal Acara</label>
                         <input type="date" id="search-location" name="location" placeholder="Enter city or neighborhood" required="">
-                        <i class="bi bi-geo-alt field-icon"></i>
+                        <i class="bi bi-calendar field-icon"></i>
                       </div>
 
                       <div class="search-field">
                         <label for="search-type" class="field-label">Pilih</label>
                         <select id="search-type" name="property_type" required="">
-                          <option value="">All Types</option>
-                          <option value="house">Single House</option>
-                          <option value="apartment">Apartment</option>
-                          <option value="condo">Condominium</option>
-                          <option value="villa">Villa</option>
-                          <option value="commercial">Commercial</option>
+                          <option value="">Kategori Paket</option>
+                          <option value="house">Wedding</option>
+                          <option value="apartment">Prewed</option>
+                          <option value="condo">Dekorasi</option>
+                          <option value="villa">Dokumentasi</option>
+                          <option value="commercial">Mua & Busana</option>
                         </select>
                         <i class="bi bi-building field-icon"></i>
                       </div>
 
                       <div class="search-field">
-                        <label for="search-location" class="field-label">Upload Konsep</label>
-                        <input type="file" id="search-location" name="location" placeholder="Enter city or neighborhood" required="">
+                        <label for="search-location" class="field-label">Detail Kebutuhan</label>
+                        <input type="text" id="search-location" name="location" placeholder="Enter city or neighborhood">
                         <i class="bi bi-geo-alt field-icon"></i>
                       </div>
                     </div>
@@ -122,191 +122,128 @@
                 </div>
               </div>
             </div><!-- End Hero Visual -->
-
           </div>
         </div>
-
       </div>
 
     </section>
 
-    <section id="featured-properties" class="featured-properties section">
+    <section id="featured-packages" class="featured-properties section">
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Paket Favorit Kami</h2>
+            <p>Pilihan paket wedding terbaik untuk mewujudkan hari istimewa Anda</p>
+        </div><!-- End Section Title -->
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Featured Properties</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div><!-- End Section Title -->
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+            <div class="row gy-5">
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-5">
-
-          <div class="col-lg-8">
-
-            <div class="featured-property-main" data-aos="zoom-in" data-aos-delay="200">
-              <div class="property-hero">
-                <img src="assets/img/real-estate/property-exterior-4.webp" alt="Luxury Estate" class="img-fluid">
-                <div class="property-overlay">
-                  <div class="property-badge-main premium">Premium</div>
-                  <div class="property-stats">
-                    <div class="stat-item">
-                      <i class="bi bi-house-door"></i>
-                      <span>6 Bedrooms</span>
+            <!-- Featured Package Besar -->
+            <div class="col-lg-8">
+                <div class="featured-property-main" data-aos="zoom-in" data-aos-delay="200">
+                <div class="property-hero">
+                    <img src="{{ asset('aset/image/wedding-6.jpg') }}" alt="Paket Premium Wedding" class="img-fluid">
+                    <div class="property-overlay">
+                    <div class="property-badge-main premium">Paket Premium</div>
+                    <div class="property-stats">
+                        <div class="stat-item">
+                        <i class="bi bi-flower1"></i>
+                        <span>Dekorasi Lengkap</span>
+                        </div>
+                        <div class="stat-item">
+                        <i class="bi bi-camera"></i>
+                        <span>Dokumentasi Full</span>
+                        </div>
+                        <div class="stat-item">
+                        <i class="bi bi-people"></i>
+                        <span>500 Undangan</span>
+                        </div>
                     </div>
-                    <div class="stat-item">
-                      <i class="bi bi-droplet-fill"></i>
-                      <span>5 Bathrooms</span>
                     </div>
-                    <div class="stat-item">
-                      <i class="bi bi-arrows-move"></i>
-                      <span>5,500 sq ft</span>
-                    </div>
-                  </div>
                 </div>
-              </div>
-              <div class="property-hero-content">
-                <div class="property-header">
-                  <div class="property-info">
-                    <h2><a href="property-details.html">Magnificent Estate with Garden Views</a></h2>
-                    <div class="property-address">
-                      <i class="bi bi-geo-alt-fill"></i>
-                      <span>Malibu, CA 90265</span>
+                <div class="property-hero-content">
+                    <div class="property-header">
+                    <div class="property-info">
+                        <h2><a href="paket-premium.html">Wedding Premium Outdoor</a></h2>
+                        <div class="property-address">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span>Jakarta & Sekitarnya</span>
+                        </div>
                     </div>
-                  </div>
-                  <div class="property-price-main">$4,850,000</div>
+                    <div class="property-price-main">Rp 75.000.000</div>
+                    </div>
+                    <p class="property-description">
+                    Paket lengkap dengan dekorasi mewah, MUA profesional, dokumentasi video & foto, serta catering untuk 500 undangan.
+                    </p>
+                    <div class="property-actions-main">
+                    <a href="paket-premium.html" class="btn-primary-custom">Pesan Sekarang</a>
+                    <a href="paket-premium.html" class="btn-outline-custom">Lihat Detail</a>
+                    <div class="property-listing-info">
+                        <span class="listing-status for-sale">Best Seller</span>
+                        <span class="listing-date">Promo Bulan Ini</span>
+                    </div>
+                    </div>
                 </div>
-                <p class="property-description">Luxurious estate nestled in exclusive Malibu hills featuring panoramic ocean views, infinity pool, wine cellar, and private tennis court. Architectural masterpiece with premium finishes throughout.</p>
-                <div class="property-actions-main">
-                  <a href="property-details.html" class="btn-primary-custom">Schedule Tour</a>
-                  <a href="property-details.html" class="btn-outline-custom">View Gallery</a>
-                  <div class="property-listing-info">
-                    <span class="listing-status for-sale">For Sale</span>
-                    <span class="listing-date">Listed today</span>
-                  </div>
                 </div>
-              </div>
             </div>
+            <!-- End Featured -->
 
-          </div>
+            <!-- Sidebar Paket -->
+            <div class="col-lg-4">
+                <div class="properties-sidebar">
 
-          <div class="col-lg-4">
-
-            <div class="properties-sidebar">
-
-              <div class="sidebar-property-card" data-aos="fade-left" data-aos-delay="300">
-                <div class="sidebar-property-image">
-                  <img src="assets/img/real-estate/property-exterior-1.webp" alt="Modern Condo" class="img-fluid">
-                  <div class="sidebar-property-badge hot">Hot Deal</div>
+                <!-- Paket Intimate -->
+                <div class="sidebar-property-card" data-aos="fade-left" data-aos-delay="300">
+                    <div class="sidebar-property-image">
+                    <img src="{{ asset('aset/image/wedding-4.jpg') }}" alt="Paket Intimate Wedding" class="img-fluid">
+                    <div class="sidebar-property-badge hot">Favorit</div>
+                    </div>
+                    <div class="sidebar-property-content">
+                    <h4><a href="paket-intimate.html">Paket Intimate Wedding</a></h4>
+                    <div class="sidebar-location">
+                        <i class="bi bi-heart"></i>
+                        <span>Private Venue</span>
+                    </div>
+                    <div class="sidebar-specs">
+                        <span><i class="bi bi-people"></i> 100 Tamu</span>
+                        <span><i class="bi bi-music-note-beamed"></i> Live Music</span>
+                    </div>
+                    <div class="sidebar-price-row">
+                        <div class="sidebar-price">Rp 35.000.000</div>
+                        <a href="paket-intimate.html" class="sidebar-btn">Lihat</a>
+                    </div>
+                    </div>
                 </div>
-                <div class="sidebar-property-content">
-                  <h4><a href="property-details.html">Contemporary Downtown Condo</a></h4>
-                  <div class="sidebar-location">
-                    <i class="bi bi-pin-map"></i>
-                    <span>Seattle, WA 98101</span>
-                  </div>
-                  <div class="sidebar-specs">
-                    <span><i class="bi bi-house"></i> 3 BR</span>
-                    <span><i class="bi bi-droplet"></i> 2 BA</span>
-                    <span><i class="bi bi-rulers"></i> 2,100 sq ft</span>
-                  </div>
-                  <div class="sidebar-price-row">
-                    <div class="sidebar-price">$1,595,000</div>
-                    <a href="property-details.html" class="sidebar-btn">View</a>
-                  </div>
-                </div>
-              </div>
 
-              <div class="sidebar-property-card" data-aos="fade-left" data-aos-delay="400">
-                <div class="sidebar-property-image">
-                  <img src="assets/img/real-estate/property-exterior-9.webp" alt="Family Home" class="img-fluid">
-                  <div class="sidebar-property-badge new">New Listing</div>
+                <!-- Paket Prewedding -->
+                <div class="sidebar-property-card" data-aos="fade-left" data-aos-delay="400">
+                    <div class="sidebar-property-image">
+                    <img src="{{ asset('aset/image/wedding-5.jpg') }}" alt="Paket Prewedding" class="img-fluid">
+                    <div class="sidebar-property-badge new">Baru</div>
+                    </div>
+                    <div class="sidebar-property-content">
+                    <h4><a href="paket-prewedding.html">Paket Prewedding Eksklusif</a></h4>
+                    <div class="sidebar-location">
+                        <i class="bi bi-camera"></i>
+                        <span>Indoor & Outdoor</span>
+                    </div>
+                    <div class="sidebar-specs">
+                        <span><i class="bi bi-clock"></i> 6 Jam</span>
+                        <span><i class="bi bi-image"></i> 200 Foto</span>
+                    </div>
+                    <div class="sidebar-price-row">
+                        <div class="sidebar-price">Rp 15.000.000</div>
+                        <a href="paket-prewedding.html" class="sidebar-btn">Lihat</a>
+                    </div>
+                    </div>
                 </div>
-                <div class="sidebar-property-content">
-                  <h4><a href="property-details.html">Elegant Family Residence</a></h4>
-                  <div class="sidebar-location">
-                    <i class="bi bi-pin-map"></i>
-                    <span>Portland, OR 97201</span>
-                  </div>
-                  <div class="sidebar-specs">
-                    <span><i class="bi bi-house"></i> 4 BR</span>
-                    <span><i class="bi bi-droplet"></i> 3 BA</span>
-                    <span><i class="bi bi-rulers"></i> 3,100 sq ft</span>
-                  </div>
-                  <div class="sidebar-price-row">
-                    <div class="sidebar-price">$925,000</div>
-                    <a href="property-details.html" class="sidebar-btn">View</a>
-                  </div>
                 </div>
-              </div>
-
             </div>
-
-          </div>
-
+            </div>
         </div>
+</section>
 
-        <div class="row gy-4 mt-4">
 
-          <div class="col-xl-6" data-aos="fade-up" data-aos-delay="600">
-            <div class="property-card-horizontal">
-              <div class="property-image-horizontal">
-                <img src="assets/img/real-estate/property-interior-5.webp" alt="Penthouse" class="img-fluid">
-                <div class="property-badge-horizontal exclusive">Exclusive</div>
-              </div>
-              <div class="property-content-horizontal">
-                <h3><a href="property-details.html">Luxury Penthouse Suite</a></h3>
-                <div class="property-location-horizontal">
-                  <i class="bi bi-geo-alt"></i>
-                  <span>Las Vegas, NV 89102</span>
-                </div>
-                <div class="property-features">
-                  <span class="feature"><i class="bi bi-house"></i> 3 Bedrooms</span>
-                  <span class="feature"><i class="bi bi-droplet"></i> 3 Bathrooms</span>
-                  <span class="feature"><i class="bi bi-rulers"></i> 2,850 sq ft</span>
-                </div>
-                <p>Spectacular penthouse with floor-to-ceiling windows and private rooftop terrace overlooking the city skyline.</p>
-                <div class="property-footer-horizontal">
-                  <div class="property-price-horizontal">$2,195,000</div>
-                  <a href="property-details.html" class="btn-view-horizontal">View Details</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xl-6" data-aos="fade-up" data-aos-delay="700">
-            <div class="property-card-horizontal">
-              <div class="property-image-horizontal">
-                <img src="assets/img/real-estate/property-interior-8.webp" alt="Modern Home" class="img-fluid">
-                <div class="property-badge-horizontal new">New</div>
-              </div>
-              <div class="property-content-horizontal">
-                <h3><a href="property-details.html">Modern Architectural Gem</a></h3>
-                <div class="property-location-horizontal">
-                  <i class="bi bi-geo-alt"></i>
-                  <span>Phoenix, AZ 85001</span>
-                </div>
-                <div class="property-features">
-                  <span class="feature"><i class="bi bi-house"></i> 4 Bedrooms</span>
-                  <span class="feature"><i class="bi bi-droplet"></i> 3 Bathrooms</span>
-                  <span class="feature"><i class="bi bi-rulers"></i> 3,450 sq ft</span>
-                </div>
-                <p>Award-winning contemporary design with sustainable features, smart home technology, and resort-style backyard.</p>
-                <div class="property-footer-horizontal">
-                  <div class="property-price-horizontal">$1,375,000</div>
-                  <a href="property-details.html" class="btn-view-horizontal">View Details</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <section id="testimonials" class="testimonials section light-background">
+    {{-- <section id="testimonials" class="testimonials section light-background">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -406,192 +343,137 @@
 
       </div>
 
-    </section>
+    </section> --}}
 
     <section id="why-us" class="why-us section">
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Kenapa Memilih Kami?</h2>
+            <p>Kami hadir untuk menjadikan hari bahagia Anda lebih berkesan, indah, dan tak terlupakan.</p>
+        </div><!-- End Section Title -->
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Why Us</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div><!-- End Section Title -->
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row gy-4">
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <!-- Left Content -->
+      <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
+        <div class="content">
+          <h3>Wujudkan Pernikahan Impian Anda Bersama Kami</h3>
+          <p>Kami berpengalaman mengatur berbagai konsep pernikahan mulai dari intimate wedding hingga resepsi mewah. Dengan tim profesional dan vendor terpercaya, setiap detail acara akan dirancang dengan sempurna.</p>
 
-        <div class="row gy-4">
-
-          <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
-            <div class="content">
-              <h3>Why Choose Premier Real Estate Partners?</h3>
-              <p>With over two decades of experience in the real estate market, we've built our reputation on trust, expertise, and exceptional results. Our dedicated team of local experts understands the nuances of every neighborhood and market trend.</p>
-
-              <div class="features-list">
-                <div class="feature-item d-flex align-items-center mb-3">
-                  <div class="icon-wrapper me-3">
-                    <i class="bi bi-check-circle-fill"></i>
-                  </div>
-                  <div>
-                    <h5>Local Market Expertise</h5>
-                    <p>Deep knowledge of neighborhoods, pricing trends, and market conditions in your area.</p>
-                  </div>
-                </div>
-
-                <div class="feature-item d-flex align-items-center mb-3">
-                  <div class="icon-wrapper me-3">
-                    <i class="bi bi-shield-check"></i>
-                  </div>
-                  <div>
-                    <h5>Verified Listings Only</h5>
-                    <p>Every property is thoroughly vetted and verified before listing to ensure accuracy and quality.</p>
-                  </div>
-                </div>
-
-                <div class="feature-item d-flex align-items-center mb-3">
-                  <div class="icon-wrapper me-3">
-                    <i class="bi bi-headset"></i>
-                  </div>
-                  <div>
-                    <h5>24/7 Client Support</h5>
-                    <p>Our dedicated support team is available around the clock to assist with your real estate needs.</p>
-                  </div>
-                </div>
-
-                <div class="feature-item d-flex align-items-center mb-3">
-                  <div class="icon-wrapper me-3">
-                    <i class="bi bi-graph-up-arrow"></i>
-                  </div>
-                  <div>
-                    <h5>Proven Track Record</h5>
-                    <p>Consistently delivering results with over 2,500 successful transactions and 98% client satisfaction.</p>
-                  </div>
-                </div>
+          <div class="features-list">
+            <div class="feature-item d-flex align-items-center mb-3">
+              <div class="icon-wrapper me-3">
+                <i class="bi bi-heart-fill"></i>
               </div>
+              <div>
+                <h5>Konsep Eksklusif & Personal</h5>
+                <p>Setiap pernikahan dirancang sesuai kepribadian dan cerita cinta Anda.</p>
+              </div>
+            </div>
 
-              <div class="cta-buttons mt-4">
-                <a href="#" class="btn btn-primary me-3">Learn More About Us</a>
-                <a href="#" class="btn btn-outline-primary">Contact Our Team</a>
+            <div class="feature-item d-flex align-items-center mb-3">
+              <div class="icon-wrapper me-3">
+                <i class="bi bi-emoji-smile"></i>
+              </div>
+              <div>
+                <h5>Tim Profesional & Ramah</h5>
+                <p>Didukung oleh MUA, fotografer, dan dekorator berpengalaman di bidangnya.</p>
+              </div>
+            </div>
+
+            <div class="feature-item d-flex align-items-center mb-3">
+              <div class="icon-wrapper me-3">
+                <i class="bi bi-music-note-beamed"></i>
+              </div>
+              <div>
+                <h5>Layanan Lengkap</h5>
+                <p>Dari dekorasi, catering, dokumentasi, hingga hiburan dalam satu paket.</p>
+              </div>
+            </div>
+
+            <div class="feature-item d-flex align-items-center mb-3">
+              <div class="icon-wrapper me-3">
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <div>
+                <h5>Ratusan Klien Bahagia</h5>
+                <p>Lebih dari 500 pasangan telah mempercayakan hari spesialnya kepada kami.</p>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
-            <div class="stats-section">
-              <div class="row gy-4">
-                <div class="col-md-6">
-                  <div class="stat-card text-center">
-                    <div class="stat-icon mb-3">
-                      <i class="bi bi-house-door"></i>
-                    </div>
-                    <div class="stat-number">
-                      <span data-purecounter-start="0" data-purecounter-end="2500" data-purecounter-duration="2" class="purecounter"></span>+
-                    </div>
-                    <div class="stat-label">Homes Sold</div>
-                    <p>Successfully closed transactions across all property types and price ranges.</p>
-                  </div>
-                </div>
+          <div class="cta-buttons mt-4">
+            <a href="#paket" class="btn btn-primary me-3">Lihat Paket Kami</a>
+            <a href="#contact" class="btn btn-outline-primary">Konsultasi Gratis</a>
+          </div>
+        </div>
+      </div>
+      <!-- End Left Content -->
 
-                <div class="col-md-6">
-                  <div class="stat-card text-center">
-                    <div class="stat-icon mb-3">
-                      <i class="bi bi-people"></i>
-                    </div>
-                    <div class="stat-number">
-                      <span data-purecounter-start="0" data-purecounter-end="98" data-purecounter-duration="2" class="purecounter"></span>%
-                    </div>
-                    <div class="stat-label">Client Satisfaction</div>
-                    <p>Exceptional service quality rated by our satisfied homeowners and investors.</p>
-                  </div>
+      <!-- Right Stats -->
+      <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
+        <div class="stats-section">
+          <div class="row gy-4">
+            <div class="col-md-6">
+              <div class="stat-card text-center">
+                <div class="stat-icon mb-3">
+                  <i class="bi bi-people-fill"></i>
                 </div>
-
-                <div class="col-md-6">
-                  <div class="stat-card text-center">
-                    <div class="stat-icon mb-3">
-                      <i class="bi bi-clock-history"></i>
-                    </div>
-                    <div class="stat-number">
-                      <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="2" class="purecounter"></span>+
-                    </div>
-                    <div class="stat-label">Years Experience</div>
-                    <p>Two decades of expertise navigating changing market conditions successfully.</p>
-                  </div>
+                <div class="stat-number">
+                  <span data-purecounter-start="0" data-purecounter-end="500" data-purecounter-duration="2" class="purecounter"></span>+
                 </div>
-
-                <div class="col-md-6">
-                  <div class="stat-card text-center">
-                    <div class="stat-icon mb-3">
-                      <i class="bi bi-award"></i>
-                    </div>
-                    <div class="stat-number">
-                      <span data-purecounter-start="0" data-purecounter-end="45" data-purecounter-duration="2" class="purecounter"></span>+
-                    </div>
-                    <div class="stat-label">Industry Awards</div>
-                    <p>Recognition for excellence in real estate service and client satisfaction.</p>
-                  </div>
-                </div>
+                <div class="stat-label">Pernikahan Berhasil</div>
+                <p>Dari intimate hingga resepsi besar, semua berjalan lancar & berkesan.</p>
               </div>
+            </div>
 
-              <div class="testimonial-preview mt-5">
-                <div class="testimonial-card">
-                  <div class="quote-icon mb-2">
-                    <i class="bi bi-quote"></i>
-                  </div>
-                  <p>"Working with this team made buying our first home a seamless experience. Their knowledge of the local market and dedication to finding the perfect property exceeded our expectations."</p>
-                  <div class="testimonial-author d-flex align-items-center mt-3">
-                    <img src="assets/img/person/person-f-3.webp" alt="Client" class="author-image me-3">
-                    <div>
-                      <h6>Sarah Martinez</h6>
-                      <span>First-time Homebuyer</span>
-                    </div>
-                  </div>
+            <div class="col-md-6">
+              <div class="stat-card text-center">
+                <div class="stat-icon mb-3">
+                  <i class="bi bi-star"></i>
                 </div>
+                <div class="stat-number">
+                  <span data-purecounter-start="0" data-purecounter-end="98" data-purecounter-duration="2" class="purecounter"></span>%
+                </div>
+                <div class="stat-label">Kepuasan Klien</div>
+                <p>Mayoritas pasangan menilai layanan kami melebihi ekspektasi.</p>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="stat-card text-center">
+                <div class="stat-icon mb-3">
+                  <i class="bi bi-clock-history"></i>
+                </div>
+                <div class="stat-number">
+                  <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="2" class="purecounter"></span>+
+                </div>
+                <div class="stat-label">Tahun Pengalaman</div>
+                <p>Kami telah dipercaya lebih dari satu dekade di industri wedding organizer.</p>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="stat-card text-center">
+                <div class="stat-icon mb-3">
+                  <i class="bi bi-award-fill"></i>
+                </div>
+                <div class="stat-number">
+                  <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="2" class="purecounter"></span>+
+                </div>
+                <div class="stat-label">Penghargaan</div>
+                <p>Diakui sebagai salah satu WO terbaik dengan standar layanan premium.</p>
               </div>
             </div>
           </div>
-
         </div>
-
       </div>
+      <!-- End Right Stats -->
 
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section class="call-to-action-1 call-to-action section" id="call-to-action">
-      <div class="cta-bg" style="background-image: url('assets/img/real-estate/showcase-3.webp');"></div>
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row justify-content-center">
-          <div class="col-xl-6 col-lg-8">
-
-            <div class="cta-content text-center">
-              <h2>Need Help Finding Your Dream Property?</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-
-              <div class="cta-buttons">
-                <a href="#" class="btn btn-primary">Contact Us Today</a>
-                <a href="#" class="btn btn-outline">Schedule a Call</a>
-              </div>
-
-              <div class="cta-features">
-                <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
-                  <i class="bi bi-telephone-fill"></i>
-                  <span>Free Consultation</span>
-                </div>
-                <div class="feature-item" data-aos="fade-up" data-aos-delay="250">
-                  <i class="bi bi-clock-fill"></i>
-                  <span>24/7 Support</span>
-                </div>
-                <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
-                  <i class="bi bi-shield-check-fill"></i>
-                  <span>Trusted Experts</span>
-                </div>
-              </div>
-
-            </div><!-- End CTA Content -->
-
-          </div>
-        </div>
-
-      </div>
-    </section>
 
   </main>
 
