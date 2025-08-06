@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AkunController;
-use App\Http\Controllers\admin\BookingController;
-use App\Http\Controllers\admin\PackageController;
+use App\Http\Controllers\admin\crud\ProductContentController;
+use App\Http\Controllers\admin\crud\ProductPackageController;
 use App\Http\Controllers\admin\PageClientController;
 use App\Http\Controllers\admin\TransaksiController;
 use Illuminate\Support\Facades\Route;
@@ -11,19 +11,34 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/dashboard-admin', [AdminController::class, 'index'])->name('dashboard-admin');
 
+    // Kontent Dashboard
     Route::get('/admin-dashboard/client/hero', [PageClientController::class, 'berandaClient'])->name('admin.page-client');
     Route::get('/admin-dashboard/client/about', [PageClientController::class, 'tentangClient'])->name('admin.page.about-client');
 
-    Route::get('/admin-dashboard/paket/wedding', [PackageController::class, 'weddingAdmin'])->name('admin.package-wedding');
-    Route::get('/admin-dashboard/paket/prewed', [PackageController::class, 'prewedAdmin'])->name('admin.package-prewed');
-    Route::get('/admin-dashboard/paket/dekorasi', [PackageController::class, 'dekorasiAdmin'])->name('admin.package-dekorasi');
-    Route::get('/admin-dashboard/paket/mua',[PackageController::class, 'muaAdmin'])->name('admin.package-mua');
-    Route::get('/admin-dashboard/paket/dokumentasi', [PackageController::class, 'dokumentasiAdmin'])->name('admin.package-dokumentasi');
+    // produk
+    Route::get('/admin/produk', [ProductContentController::class, 'dashboard'])->name(name: 'admin.produk.dashboard');
 
-    Route::get('/admin-dashboard/booking', [BookingController::class, 'showBooking'])->name('admin.show.booking');
-    Route::post('/booking/{id}/status', [BookingController::class, 'updateStatus'])->name('booking.update.status');
-    Route::delete('/booking/{id}', [BookingController::class, 'deleteBooked'])->name('booking.destroy');
+    // Konten Produk
+    //Route::get('/admin/content/create', [ProductContentController::class, 'create'])->name('admin.content.create');
+    //Route::post('/admin/content/store', [ProductContentController::class, 'store'])->name('admin.content.store');
+    Route::get('/admin/content/edit/{id}', [ProductContentController::class, 'edit'])->name('admin.content.edit');
+    Route::post('/admin/content/update/{id}', [ProductContentController::class, 'update'])->name('admin.content.update');
+    //Route::delete('/admin/content/{id}', [ProductContentController::class, 'destroy'])->name('admin.content.destroy');
 
+    // Paket Produk
+    Route::get('/admin/package/create', [ProductPackageController::class, 'create'])->name('admin.package.create');
+    Route::post('/admin/package/store', [ProductPackageController::class, 'store'])->name('admin.package.store');
+    Route::get('/admin/package/edit/{id}', [ProductPackageController::class, 'edit'])->name('admin.package.edit');
+    Route::put('/admin/package/{id}', [ProductPackageController::class, 'update'])->name('admin.package.update');
+    Route::delete('/admin/package/{id}', [ProductPackageController::class, 'destroy'])->name('admin.package.destroy');
+
+
+    //Trasaksi
+    Route::get('/admin/transaksi/', [TransaksiController::class, 'showTransaksi'])->name('admin.transaksi');
+
+    // Booking
+
+    //data Pengguna
     Route::get('/admin-dashboard/data-pengguna', [AkunController::class, 'dataClient'])->name('admin.data-pengguna');
     Route::get('/data-pengguna/create', [AkunController::class, 'showCreateAdmin'])->name('add.acount.admin');
     Route::get('/data-pengguna/edit/{id}', [AkunController::class, 'showEditAdmin'])->name('edit.acount.admin');

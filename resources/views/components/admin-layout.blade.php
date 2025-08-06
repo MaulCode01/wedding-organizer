@@ -21,8 +21,10 @@
 </main>
 
 <script src="{{ asset('dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 <script src="{{ asset('dashboard/js/main.js') }}"></script>
 <script src="{{ asset('aset/js/script-admin.js') }}"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </body>
 </html>

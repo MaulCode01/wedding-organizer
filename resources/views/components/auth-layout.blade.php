@@ -18,8 +18,12 @@
 </head>
 <body>
 
+ <main>
 
     {{ $slot }}
+
+ </main id="main" class="main">
+
 
 
 <script src="{{ asset('dashboard/vendor/bootstrap/js/bootstrap.min.js') }}"></script>

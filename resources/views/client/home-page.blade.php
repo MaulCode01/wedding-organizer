@@ -1,7 +1,6 @@
 <x-client-layout>
 <x-slot:title>Wedding Organizer - Home page</x-slot:title>
 <main class="main">
-
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <i class="bi bi-check-circle-fill me-2"></i>
@@ -10,13 +9,14 @@
         </div>
     @endif
 
-    @if(session('error'))
+    @if($errors->any())
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <i class="bi bi-exclamation-triangle-fill me-2"></i>
-            {{ session('error') }}
+            {{ $errors->first() }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
+
 
 
     <section id="hero" class="hero section">
@@ -36,82 +36,59 @@
 
                 <div class="search-container" data-aos="fade-up" data-aos-delay="300">
                   <div class="search-header">
-                    <h3>Mau Pesan Paket Tanpa Ribet?</h3>
-                    <p>Anda bisa melakukan booking tanpa harus login. Cukup pilih paket yang diinginkan dan isi data pemesan, tim kami akan segera menghubungi Anda!</p>
-                  </div>
+                    <h3>Masih Bingung Memilih Paket? Yuk Konsultasi Dulu!</h3>
+                    <p>Jangan khawatir, tim kami siap membantu Anda memilih paket yang sesuai dengan kebutuhan dan budget. Tim Kami akan menghubungi Anda melalui WhatsApp untuk panduan lebih lanjut.</p>
+                </div>
 
-                  <form action="{{ route('booking.store') }}" method="POST" class="property-search-form">
+                  <form action="{{ route('konsultant.send') }}" method="POST" class="property-search-form">
                     @csrf
                     <div class="search-grid">
-                    <div class="search-field">
-                        <label for="search-location" class="field-label">Nama Lengkap</label>
-                        <input type="text" id="search-location" name="nama_lengkap" placeholder="Enter city or neighborhood" required="">
-                        <i class="bi bi-person field-icon"></i>
-                        @error('nama_lengkap')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
+                        <div class="search-field">
+                            <label for="nama_lengkap" class="field-label">Nama Lengkap</label>
+                            <input type="text" id="nama_lengkap" name="nama_lengkap" placeholder="Masukan Nama Lengkap" class="@error('nama_lengkap') is-invalid @enderror"
+                                value="{{ old('nama_lengkap') }}" required>
+                            <i class="bi bi-person field-icon"></i>
+                            @error('nama_lengkap')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="search-field">
+                            <label for="kontak" class="field-label">Nomor Whats App/Text</label>
+                            <input type="text" id="kontak" name="kontak" placeholder="Contoh : 6287788326561" required>
+                            <i class="bi bi-telephone field-icon"></i>
+                            @error('kontak')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="search-field">
+                            <label for="alamat" class="field-label">Alamat Lengkap</label>
+                            <input type="text" id="alamat" name="alamat_lengkap" placeholder="Masukan Alamat Lengkap" class="@error('alamat_lengkap') is-invalid @enderror" value="{{ old('alamat_lengkap') }}" required>
+                            <i class="bi bi-geo-alt field-icon"></i>
+                            @error('alamat_lengkap')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="search-field">
+                            <label for="catatan" class="field-label">Ada yang ingin ditanyakan?</label>
+                            <input type="text" id="catatan" name="catatan" placeholder="Silahkan masukan Pertanyaan" class="@error('catatan') is-invalid @enderror" value="{{ old('catatan') }}">
+                            <i class="bi bi-book field-icon"></i>
+                            @error('catatan')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="search-field">
-                        <label for="search-location" class="field-label">Nomor Whats App/Text</label>
-                        <input type="number" id="search-location" name="kontak" placeholder="Enter city or neighborhood" required="">
-                        <i class="bi bi-telephone field-icon"></i>
-                        @error('kontak')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                      </div>
-
-                      <div class="search-field">
-                        <label for="search-location" class="field-label">Lokasi Acara</label>
-                        <input type="text" id="search-location" name="lokasi_acara" placeholder="Enter city or neighborhood" required="">
-                        <i class="bi bi-geo-alt field-icon"></i>
-                        @error('lokasi_acara')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                      </div>
-
-                      <div class="search-field">
-                        <label for="search-location" class="field-label">Tanggal Acara</label>
-                        <input type="date" id="search-location" name="tanggal_acara" placeholder="Enter city or neighborhood" required="">
-                        <i class="bi bi-calendar field-icon"></i>
-                        @error('tanggal_acara')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                      </div>
-
-                      <div class="search-field">
-                        <label for="search-type" class="field-label">Pilih</label>
-                        <select id="search-type" name="kategori" required="">
-                          <option value="">Kategori Paket</option>
-                          <option value="wedding">Wedding</option>
-                          <option value="prewed">Prewed</option>
-                          <option value="dekorasi">Dekorasi</option>
-                          <option value="dokumentasi">Dokumentasi</option>
-                          <option value="mua & busana">Mua & Busana</option>
-                        </select>
-                        <i class="bi bi-building field-icon"></i>
-                        @error('kateori')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                      </div>
-
-                      <div class="search-field">
-                        <label for="search-location" class="field-label">Catatan</label>
-                        <input type="text" id="search-location" name="catatan" placeholder="Enter city or neighborhood">
-                        <i class="bi bi-geo-alt field-icon"></i>
-                        @error('catatan')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                      </div>
-                    </div>
-
-                    <button type="submit" class="search-btn">
-                      <i class="bi bi-bookmark"></i>
-                      <span>Booking Sekarang</span>
+                    <button type="submit" class="search-btn" onclick="this.form.submit()">
+                        <i class="bi bi-bookmark"></i>
+                        <span>Konsultasi Sekarang</span>
                     </button>
-                  </form>
-                </div>
-              </div>
+                </form>
+
             </div>
+            </div>
+        </div>
 
             <div class="col-lg-5">
               <div class="hero-visual" data-aos="fade-left" data-aos-delay="400">
@@ -125,7 +102,7 @@
                     <img src="{{ asset('aset/image/wedding-3.jpg') }}" alt="Featured Property" class="img-fluid">
                     <div class="property-info">
                       <div class="property-details">
-                        <span><i class="bi bi-geo-alt"></i> Padang Birau Rt.12 jl lubuk linggau km 3 kabupaten kelurahan gunung kembang kabupaten sarolangun provinsi jambi</span>
+                        <span><i class="bi bi-geo-alt"></i>{{ $aboutClient->alamat }}</span>
                       </div>
                     </div>
                   </div>
@@ -497,4 +474,5 @@
 
   <div id="preloader"></div>
 
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </x-client-layout>

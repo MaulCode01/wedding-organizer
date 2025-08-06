@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Http\Controllers\client;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+use function App\Helper\path_view;
+
+class CheckOutController extends Controller
+{
+    public function checkOut(){
+        $view = path_view('client.product-client');
+        return view($view);
+    }
+}

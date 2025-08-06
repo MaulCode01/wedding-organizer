@@ -90,7 +90,7 @@
 
     {{-- Paket Layanan --}}
     @php
-        $paketActive = request()->routeIs('admin.package-*');
+        $paketActive = request()->routeIs('admin*');
     @endphp
     <li class="nav-item">
         <a class="nav-link {{ $paketActive ? '' : 'collapsed' }}" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
@@ -98,28 +98,18 @@
         </a>
         <ul id="tables-nav" class="nav-content collapse {{ $paketActive ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
             <li>
-                <a href="{{ route('admin.package-wedding') }}" class="{{ request()->routeIs('admin.package-wedding') ? 'active' : '' }}">
-                    <i class="bi bi-circle"></i><span>Wedding</span>
+                <a href="{{ route('admin.produk.dashboard') }}" class="{{ request()->routeIs('admin.produk.dashboard') ? 'active' : '' }}">
+                    <i class="bi bi-circle"></i><span>Produk Management</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('admin.package-prewed') }}" class="{{ request()->routeIs('admin.package-prewed') ? 'active' : '' }}">
-                    <i class="bi bi-circle"></i><span>Prewed</span>
+                <a href="{{ route('admin.transaksi') }}" class="{{ request()->routeIs('admin.transaksi') ? 'active' : '' }}">
+                    <i class="bi bi-circle"></i><span>Transaksi Management</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('admin.package-dekorasi') }}" class="{{ request()->routeIs('admin.package-dekorasi') ? 'active' : '' }}">
-                    <i class="bi bi-circle"></i><span>Dekorasi</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.package-dokumentasi') }}" class="{{ request()->routeIs('admin.package-dokumentasi') ? 'active' : '' }}">
-                    <i class="bi bi-circle"></i><span>Dokumentasi</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.package-mua') }}" class="{{ request()->routeIs('admin.package-mua') ? 'active' : '' }}">
-                    <i class="bi bi-circle"></i><span>Mua & Busana</span>
+                <a href="#" class="{{ request()->routeIs() ? 'active' : '' }}">
+                    <i class="bi bi-circle"></i><span>Booking Management</span>
                 </a>
             </li>
         </ul>
@@ -129,9 +119,9 @@
     <li class="nav-heading">Pages</li>
 
     <li class="nav-item">
-        <a class="nav-link {{ request()->routeIs('admin.show.booking') ? '' : 'collapsed' }}" href="{{ route('admin.show.booking') }}">
+        <a class="nav-link {{ request()->routeIs('admin.show.konsult') ? '' : 'collapsed' }}" href="{{ route('admin.show.konsult') }}">
             <i class="bi bi-bookmark"></i>
-            <span>Booking Masuk</span>
+            <span>Konsultasi</span>
         </a>
     </li>
 

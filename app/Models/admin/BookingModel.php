@@ -18,7 +18,4 @@ class BookingModel extends Model
         'status',
     ];
 
-    protected $casts = [
-        'status' => BookingStatus::class
-    ];
 }

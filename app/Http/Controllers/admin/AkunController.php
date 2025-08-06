@@ -20,13 +20,13 @@ class AkunController extends Controller
     }
 
     public function showCreateAdmin(){
-        $view = path_view('admin.acount.create-admin');
+        $view = path_view('admin.crud.acount.create-admin');
         return view($view);
     }
 
     public function showEditAdmin($id){
         $dataAdmin = AuthModel::findOrFail($id);
-        $view = path_view('admin.acount.edit-admin');
+        $view = path_view('admin.crud.acount.edit-admin');
         return view($view, compact('dataAdmin'));
     }
 

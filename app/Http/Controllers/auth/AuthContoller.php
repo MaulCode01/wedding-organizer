@@ -4,15 +4,18 @@ namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\auth\AuthModel;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
 
 use function App\Helper\path_view;
 
 class AuthContoller extends Controller
 {
+
     public function showLogin(){
         $view = path_view('auth.authentikasi');
         return view($view);

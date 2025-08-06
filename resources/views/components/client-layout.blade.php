@@ -19,11 +19,14 @@
 
 <x-footer-user/>
 
+
 <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
 <script src="{{ asset('assets/vendor/aos/aos.js') }}" defer></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
+<script src="{{ asset('aset/js/script-admin.js') }}"></script>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function(){

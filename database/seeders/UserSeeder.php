@@ -26,5 +26,13 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'role' => 'admin'
         ]);
+
+
+        AuthModel::create([
+            'username' => 'Ajis Maulana',
+            'email' => 'azis@gmail',
+            'password' => Hash::make('password'),
+            'role' => 'client'
+        ]);
     }
 }

@@ -26,7 +26,7 @@
                         <i class="bi bi-chevron-down toggle-dropdown"></i>
                     </a>
                     <ul>
-                        <li><a href="{{ route('page.paket.wedding') }}">Wedding</a></li>
+                        <li><a href="{{ route('page.paket.wedding') }}">Paket Wedding</a></li>
                         <li><a href="{{ route('page.paket.prewed') }}">Prewedding</a></li>
                         <li><a href="{{ route('page.paket.mua') }}">Mua & Busana</a></li>
                         <li><a href="{{ route('page.paket.dekor') }}">Dekorasi</a></li>
@@ -40,42 +40,60 @@
                     Kontak
                     </a>
                 </li>
-
-                <li>
-                    <a href="{{ route('auth.show.login') }}" class="btn-cta">
-                        <span>Sign In</span>
-                        <i class="bi bi-box-arrow-in-right"></i>
-                    </a>
-                </li>
+                @guest
+                    <li>
+                        <a href="{{ route('auth.show.login') }}" class="btn-cta">
+                            <span>Sign In</span>
+                            <i class="bi bi-box-arrow-in-right"></i>
+                        </a>
+                    </li>
+                @endguest
 
                 @auth
-                    @if (Auth::user()->role === 'client')
-                        <li class="nav-item dropdown">
-                            <a class="nav-link d-flex align-items-center" href="#" id="userDropdown"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    @if(Auth::check() && Auth::user()->role === 'client')
+                        <li class="nav-item dropdown pe-3">
+                            <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" id="userDropdown">
                                 <img src="{{ Auth::user()->image ?? asset('aset/image/icon-guest.jpg') }}"
-                                    alt="Profile" class="rounded-circle me-1" width="45" height="45">
-                                <i class="bi bi-caret-down-fill"></i>
+                                    alt="Profile" class="rounded-circle" width="40" height="40">
+                                <span class="d-none d-md-block ps-2">
+                                    {{ Auth::user()->username }}
+                                </span>
+                                <i class="bi bi-caret-down-fill arrow ms-1"></i>
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-2" aria-labelledby="userDropdown">
+
+                            <ul class="dropdown-menu p-3 text-center" id="userDropdownMenu">
+                                <li class="mb-2">
+                                    <h6 class="mb-0 text-dark">{{ Auth::user()->username }}</h6>
+                                    <small class="text-muted">{{ Auth::user()->role }}</small>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <i class="bi bi-person me-2"></i> Profile
+                                    <a href="{{ route('client.profile') }}" class="dropdown-item d-flex align-items-center justify-content-start gap-2">
+                                        <i class="bi bi-person"></i>
+                                        <span>Profile Saya</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('client.produk.checkout') }}" class="dropdown-item d-flex align-items-center justify-content-start gap-2">
+                                        <i class="bi bi-cart-check"></i>
+                                        <span>Product Saya</span>
                                     </a>
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    <form action="{{ route('auth.logout') }}" method="POST" class="m-0">
+                                    <form method="POST" action="{{ route('auth.logout') }}" class="m-0">
                                         @csrf
-                                        <button type="submit" class="dropdown-item d-flex align-items-center">
-                                            <i class="bi bi-box-arrow-right me-2"></i> Logout
+                                        <button type="submit"
+                                            class="dropdown-item d-flex align-items-center justify-content-start gap-2 text-danger">
+                                            <i class="bi bi-box-arrow-right"></i>
+                                            <span>Logout</span>
                                         </button>
                                     </form>
                                 </li>
                             </ul>
+
                         </li>
                     @endif
-
                 @endauth
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

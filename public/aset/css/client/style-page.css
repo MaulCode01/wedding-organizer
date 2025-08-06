@@ -1,7 +1,60 @@
-.navbar .dropdown:hover .dropdown-menu {
-    display: none !important;
+/* Kontainer dropdown */
+.dropdown-custom {
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 200px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
 
-.navbar .dropdown .dropdown-menu.show {
-    display: block !important;
+/* Header */
+.dropdown-custom .dropdown-header {
+    text-align: center;
+    padding: 12px 10px;
+    border-bottom: 1px solid #eee;
+}
+.dropdown-custom .dropdown-header h6 {
+    margin: 0;
+    font-size: 15px;
+    color: #000;
+    font-weight: 600;
+}
+.dropdown-custom .dropdown-header p {
+    margin: 2px 0 0;
+    font-size: 13px;
+    color: #000;
+}
+
+/* Divider */
+.dropdown-custom hr {
+    margin: 6px 0;
+    border: 0;
+    height: 1px;
+    background: #eee;
+}
+
+/* Item link/button */
+.dropdown-custom .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.dropdown-custom .dropdown-item i {
+    font-size: 16px;
+    color: #555;
+}
+.dropdown-custom .dropdown-item:hover {
+    background: #f8f9fa;
 }

@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bookings', function (Blueprint $table) {
+        Schema::create('konsultan', function (Blueprint $table) {
             $table->id();
             $table->string('nama_lengkap');
             $table->string('kontak');
-            $table->string('lokasi_acara');
-            $table->date('tanggal_acara');
+            $table->string('alamat_lengkap');
             $table->text('catatan')->nullable();
-            $table->string('kategori');
-            $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
+            $table->enum('status', ['pending', 'confirm', 'cancel'])->default('pending');
             $table->timestamps();
         });
     }
