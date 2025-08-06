@@ -16,10 +16,9 @@ class ProdukController extends Controller
     {
         $kategori = 'Wedding';
         $content = ProdukContentModel::where('kategori', $kategori)->first();
-        $kontak = AboutModel::first();
         $packages = ProductPackage::with('content')->whereHas('content', function ($package) {$package->where('kategori', 'Wedding');})->get();
         $view = path_view('client.page.wedding');
-        return view($view, compact('content', 'packages', 'kategori', 'kontak'));
+        return view($view, compact('content', 'packages', 'kategori'));
     }
 
     public function prewed()
@@ -27,10 +26,7 @@ class ProdukController extends Controller
         $kategori = 'Prewed';
         $content = ProdukContentModel::where('kategori', $kategori)->first();
 
-        $packages = $content
-            ? ProductPackage::where('content_id', $content->id)->get()
-            : collect();
-
+        $packages = ProductPackage::with('content')->whereHas('content', function ($package) {$package->where('kategori', 'Prewed');})->get();
         $view = path_view('client.page.prewed');
         return view($view, compact('content', 'packages', 'kategori'));
     }
@@ -39,9 +35,7 @@ class ProdukController extends Controller
     {
         $kategori = 'MUA';
         $content = ProdukContentModel::where('kategori', $kategori)->first();
-        $packages = $content
-            ? ProductPackage::where('content_id', $content->id)->get()
-            : collect();
+        $packages = ProductPackage::with('content')->whereHas('content', function ($package) {$package->where('kategori', 'MUA');})->get();
 
         $view = path_view('client.page.mua');
         return view($view, compact('content', 'packages', 'kategori'));
@@ -51,10 +45,7 @@ class ProdukController extends Controller
     {
         $kategori = 'Dekorasi';
         $content = ProdukContentModel::where('kategori', $kategori)->first();
-
-        $packages = $content
-            ? ProductPackage::where('content_id', $content->id)->get()
-            : collect();
+        $packages = ProductPackage::with('content')->whereHas('content', function ($package) {$package->where('kategori', 'Dekorasi');})->get();
 
         $view = path_view('client.page.dekorasi');
         return view($view, compact('content', 'packages', 'kategori'));
@@ -64,10 +55,7 @@ class ProdukController extends Controller
     {
         $kategori = 'Dokumentasi';
         $content = ProdukContentModel::where('kategori', $kategori)->first();
-
-        $packages = $content
-            ? ProductPackage::where('content_id', $content->id)->get()
-            : collect();
+        $packages = ProductPackage::with('content')->whereHas('content', function ($package) {$package->where('kategori', 'Dokumentasi');})->get();
 
         $view = path_view('client.page.dokumentasi');
         return view($view, compact('content', 'packages', 'kategori'));

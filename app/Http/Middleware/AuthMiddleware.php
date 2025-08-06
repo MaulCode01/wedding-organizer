@@ -17,7 +17,7 @@ class AuthMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if(!Auth::check()){
-            return redirect()->route('page.hero')->withErrors(['error', 'silahkan signin terlebih dahulu']);
+            return redirect()->route('auth.show.login')->withErrors(['error', 'silahkan signin terlebih dahulu']);
         }
 
         return $next($request);

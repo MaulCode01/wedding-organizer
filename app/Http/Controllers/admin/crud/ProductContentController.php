@@ -77,17 +77,21 @@ class ProductContentController extends Controller
         ? array_map('trim', explode(',', $request->fitur))
         : [];
 
-        $imagePath = $content->image_konten;
+        $imageContent = null;
         if ($request->hasFile('image_konten')) {
-            $imagePath = $request->file('image_konten')->store('contents', 'public');
+            $imageName1 = time() . 'image_konten' . $request->image_konten->extension();
+            $request->image_konten->move(public_path('aset/upload'), $imageName1);
+
+            $imageContent = $imageName1;
         }
+
 
         $content->update([
             'kategori' => $request->kategori,
             'judul_konten' => $request->judul_konten,
             'deskripsi_konten' => $request->deskripsi_konten,
-            'fitur' => $fitur,
-            'image_konten' => $imagePath,
+            'fitur'         => json_encode($fitur),
+            'image_konten' => $imageContent,
         ]);
 
         return redirect()->route('admin.produk.dashboard')->with('success', 'Konten berhasil diperbarui.');

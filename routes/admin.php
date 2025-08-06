@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AkunController;
+use App\Http\Controllers\admin\BookingController;
+use App\Http\Controllers\admin\crud\DetailProductController;
 use App\Http\Controllers\admin\crud\ProductContentController;
 use App\Http\Controllers\admin\crud\ProductPackageController;
 use App\Http\Controllers\admin\PageClientController;
@@ -14,6 +16,8 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     // Kontent Dashboard
     Route::get('/admin-dashboard/client/hero', [PageClientController::class, 'berandaClient'])->name('admin.page-client');
     Route::get('/admin-dashboard/client/about', [PageClientController::class, 'tentangClient'])->name('admin.page.about-client');
+    Route::post('/update/hero/{id}', [PageClientController::class, 'updateHero'])->name('hero.update');
+    Route::post('/update/about/{id}', [PageClientController::class, 'updateAbout'])->name('about.update');
 
     // produk
     Route::get('/admin/produk', [ProductContentController::class, 'dashboard'])->name(name: 'admin.produk.dashboard');
@@ -37,6 +41,7 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/admin/transaksi/', [TransaksiController::class, 'showTransaksi'])->name('admin.transaksi');
 
     // Booking
+    Route::get('/admin/booking', [BookingController::class, 'showBooking'])->name('admin.show.booking');
 
     //data Pengguna
     Route::get('/admin-dashboard/data-pengguna', [AkunController::class, 'dataClient'])->name('admin.data-pengguna');
@@ -45,10 +50,4 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::post('/data-pengguna/edit/{id}', [AkunController::class, 'EditAdmin'])->name('edit.acount');
     Route::post('/data-pengguna/delete/{id}', [AkunController::class, 'deleteAcount'])->name('delete.acount');
     Route::post('/admin-dashboard/create/verifikasi', [AkunController::class, 'storeAdmin'])->name('create.acount.admin');
-
-    // Post
-
-    Route::post('/update/hero/{id}', [PageClientController::class, 'updateHero'])->name('hero.update');
-    Route::post('/update/about/{id}', [PageClientController::class, 'updateAbout'])->name('about.update');
-
 });

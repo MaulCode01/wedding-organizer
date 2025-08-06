@@ -40,7 +40,7 @@
             <tbody>
                 @forelse($contents as $c)
                 <tr>
-                    <td>{{ $c->id }}</td>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $c->kategori }}</td>
                     <td>{{ $c->judul_konten }}</td>
                     <td>{{ $c->deskripsi_konten }}</td>
@@ -97,14 +97,15 @@
             <tbody>
                 @forelse($packages as $pk)
                 <tr>
-                    <td>{{ $pk->id }}</td>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $pk->nama_paket }}</td>
                     <td>Rp {{ number_format($pk->harga, 0, ',', '.') }}</td>
                     <td>{{ $pk->content->judul_konten ?? '-' }}</td>
                     <td>
                         @if(!empty($pk->fitur))
+                            @php $fiturList = is_array($pk->fitur) ? $pk->fitur : json_decode($pk->fitur, true); @endphp
                             <ul class="mb-0">
-                                @foreach($pk->fitur as $f)
+                                @foreach($fiturList as $f)
                                     <li>{{ $f }}</li>
                                 @endforeach
                             </ul>

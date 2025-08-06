@@ -60,18 +60,13 @@
             <div class="property-info mb-5" data-aos="fade-up" data-aos-delay="300">
               <div class="property-header">
                 <h1 class="property-title">Executive Penthouse with City Views</h1>
-                <div class="property-meta">
-                  <span class="address"><i class="bi bi-geo-alt"></i> 4751 Madison Avenue, New York, NY 10037</span>
-                  <span class="listing-id">ID: #PE-2024-0847</span>
-                </div>
               </div>
 
               <div class="pricing-section">
-                <div class="main-price">$4,850<span class="period">/month</span></div>
                 <div class="price-breakdown">
-                  <span class="deposit">Security Deposit: $9,700</span>
-                  <span class="available">Available from March 15</span>
+                  <span class="available">Untuk Harga mulai dari</span>
                 </div>
+                <div class="main-price">$4,850</div>
               </div>
 
               <div class="quick-stats">

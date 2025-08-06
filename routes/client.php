@@ -4,9 +4,9 @@ use App\Http\Controllers\admin\BookingController;
 use App\Http\Controllers\admin\KonsultanController;
 use App\Http\Controllers\client\AboutController;
 use App\Http\Controllers\client\CheckOutController;
+use App\Http\Controllers\client\DetailProductController;
 use App\Http\Controllers\client\HeroController;
 use App\Http\Controllers\client\ProdukController;
-use App\Http\Controllers\client\ProfileClient;
 use App\Http\Controllers\client\ProfileClientController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +32,7 @@ Route::delete('/konsultan/{id}', [KonsultanController::class, 'deleteConsult'])-
 
 Route::middleware(['auth', 'role:client'])->group(function(){
     Route::get('/product/checkout', [CheckOutController::class, 'checkOut'])->name('client.produk.checkout');
-
     Route::get('/profile/client', [ProfileClientController::class, 'showProfile'])->name('client.profile');
+
+    Route::get('/admin/detail-produk/{package_key}', [DetailProductController::class, 'showDetail'])->name('admin.detail.produk');
 });

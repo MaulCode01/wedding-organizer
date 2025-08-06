@@ -48,64 +48,50 @@
   </div>
 
   <div class="container" data-aos="fade-up" data-aos-delay="100">
-    <div class="row g-4">
-
-      <!-- Dokumentasi Akad -->
-      <div class="col-lg-4 col-md-6">
-        <div class="property-item">
-          <div class="property-image-wrapper">
-            <img src="{{ asset('aset/image/wedding-2.jpg') }}" alt="Dokumentasi Akad" class="img-fluid">
-          </div>
-          <div class="property-details">
-            <div class="property-header">
-              <h4 class="property-title">Dokumentasi Akad Nikah</h4>
+        <div class="properties-container">
+            <div class="properties-masonry view-masonry active" data-aos="fade-up" data-aos-delay="250">
+            <div class="row g-4">
+                @forelse($packages as $package)
+                    <div class="col-lg-4 col-md-6">
+                        <div class="property-item">
+                            <a href="{{ route('detail.produk', $package->id) }}" class="property-link">
+                                <div class="property-image-wrapper">
+                                    @if(!empty($package->image_package) && file_exists(public_path('aset/upload' . $package->image_package)))
+                                        <img src="{{ asset('aset/upload'. $package->image_package) }}" alt="{{ $package->nama_paket }}" class="img-fluid">
+                                    @else
+                                        <img src="{{ asset('aset/image/wedding-2.jpg') }}" alt="Default Image" class="img-fluid">
+                                    @endif
+                                </div>
+                            </a>
+                            <div class="property-details">
+                                <div class="property-header">
+                                    <div class="property-price">Rp {{ number_format($package->harga, 0, ',', '.') }}</div>
+                                </div>
+                                <h4 class="property-title">{{ $package->nama_paket }}</h4>
+                                <div class="property-specs">
+                                    @if(!empty($package->fitur) && is_array($package->fitur))
+                                        @foreach($package->fitur as $fitur)
+                                            <div class="spec-item">
+                                                <i class="bi bi-check-circle"></i>
+                                                <span>{{ $fitur }}</span>
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @empty
+                <div class="col-12">
+                    <div class="alert alert-warning text-center">
+                        Belum ada paket {{ $kategori }} tersedia.
+                    </div>
+                </div>
+                @endforelse
             </div>
-            <p class="property-description">
-              Mengabadikan momen sakral akad nikah dengan foto dan video profesional.
-            </p>
-            <a href="{{ route('detail.produk') }}" class="btn btn-primary btn-sm">Lihat Detail</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Dokumentasi Resepsi -->
-      <div class="col-lg-4 col-md-6">
-        <div class="property-item">
-          <div class="property-image-wrapper">
-            <img src="{{ asset('aset/image/wedding-5.jpg') }}" alt="Dokumentasi Resepsi" class="img-fluid">
-          </div>
-          <div class="property-details">
-            <div class="property-header">
-              <h4 class="property-title">Dokumentasi Resepsi</h4>
             </div>
-            <p class="property-description">
-              Mengabadikan kebahagiaan bersama keluarga dan tamu di hari pernikahan.
-            </p>
-            <a href="{{ route('detail.produk') }}" class="btn btn-primary btn-sm">Lihat Detail</a>
-          </div>
         </div>
-      </div>
-
-      <!-- Dokumentasi Prewedding -->
-      <div class="col-lg-4 col-md-6">
-        <div class="property-item">
-          <div class="property-image-wrapper">
-            <img src="{{ asset('aset/image/wedding-7.jpg') }}" alt="Dokumentasi Prewedding" class="img-fluid">
-          </div>
-          <div class="property-details">
-            <div class="property-header">
-              <h4 class="property-title">Dokumentasi Prewedding</h4>
-            </div>
-            <p class="property-description">
-              Sesi foto prewedding romantis dengan konsep sesuai pilihan Anda.
-            </p>
-            <a href="{{ route('detail.produk') }}" class="btn btn-primary btn-sm">Lihat Detail</a>
-          </div>
-        </div>
-      </div>
-
     </div>
-  </div>
 </section>
 
 </x-client-layout>

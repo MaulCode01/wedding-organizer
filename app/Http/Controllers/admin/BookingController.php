@@ -13,7 +13,7 @@ class BookingController extends Controller
 
     public function showBooking(){
         $booking = BookingModel::orderBy('created_at', 'desc')->get();
-        $view = path_view('admin.booking-admin');
+        $view = path_view('admin.package.booking-admin');
         return view($view, compact('booking'));
     }
 

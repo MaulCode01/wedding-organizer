@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('product_packages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('content_id');
+            $table->unsignedBigInteger('content_id')->index();
             $table->string('nama_paket');
+            $table->string('package_key')->unique();
             $table->decimal('harga', 12, 2);
             $table->json('fitur')->nullable();
             $table->string('image_package')->nullable();
+            $table->text('description_content')->nullable();
+            $table->json('fitur_detail')->nullable();
             $table->timestamps();
             $table->foreign('content_id')->references('id')->on('product_content')->onDelete('cascade');
 

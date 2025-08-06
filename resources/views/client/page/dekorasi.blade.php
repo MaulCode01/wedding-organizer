@@ -48,107 +48,50 @@
   </div>
 
   <div class="container" data-aos="fade-up" data-aos-delay="100">
-    <div class="properties-container">
-      <div class="properties-masonry view-masonry active" data-aos="fade-up" data-aos-delay="250">
-        <div class="row g-4">
-
-          <!-- Paket Basic -->
-          <div class="col-lg-4 col-md-6">
-            <div class="property-item">
-              <a href="{{ route('detail.produk') }}" class="property-link">
-                <div class="property-image-wrapper">
-                  <img src="{{ asset('aset/image/wedding-1.jpg') }}" alt="Dekorasi Basic" class="img-fluid">
+        <div class="properties-container">
+            <div class="properties-masonry view-masonry active" data-aos="fade-up" data-aos-delay="250">
+            <div class="row g-4">
+                @forelse($packages as $package)
+                    <div class="col-lg-4 col-md-6">
+                        <div class="property-item">
+                            <a href="{{ route('detail.produk', $package->id) }}" class="property-link">
+                                <div class="property-image-wrapper">
+                                    @if(!empty($package->image_package) && file_exists(public_path('aset/upload' . $package->image_package)))
+                                        <img src="{{ asset('aset/upload'. $package->image_package) }}" alt="{{ $package->nama_paket }}" class="img-fluid">
+                                    @else
+                                        <img src="{{ asset('aset/image/wedding-2.jpg') }}" alt="Default Image" class="img-fluid">
+                                    @endif
+                                </div>
+                            </a>
+                            <div class="property-details">
+                                <div class="property-header">
+                                    <div class="property-price">Rp {{ number_format($package->harga, 0, ',', '.') }}</div>
+                                </div>
+                                <h4 class="property-title">{{ $package->nama_paket }}</h4>
+                                <div class="property-specs">
+                                    @if(!empty($package->fitur) && is_array($package->fitur))
+                                        @foreach($package->fitur as $fitur)
+                                            <div class="spec-item">
+                                                <i class="bi bi-check-circle"></i>
+                                                <span>{{ $fitur }}</span>
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @empty
+                <div class="col-12">
+                    <div class="alert alert-warning text-center">
+                        Belum ada paket {{ $kategori }} tersedia.
+                    </div>
                 </div>
-              </a>
-              <div class="property-details">
-                <div class="property-header">
-                  <div class="property-price">Rp 10.000.000</div>
-                </div>
-                <h4 class="property-title">Paket Dekorasi Basic</h4>
-                <div class="property-specs">
-                  <div class="spec-item">
-                    <i class="bi bi-flower1"></i>
-                    <span>Backdrop Sederhana</span>
-                  </div>
-                  <div class="spec-item">
-                    <i class="bi bi-brightness-high"></i>
-                    <span>Penerangan Standard</span>
-                  </div>
-                  <div class="spec-item">
-                    <i class="bi bi-balloon-heart"></i>
-                    <span>Meja Akad & Karpet</span>
-                  </div>
-                </div>
-              </div>
+                @endforelse
             </div>
-          </div>
-
-          <!-- Paket Elegant -->
-          <div class="col-lg-4 col-md-6">
-            <div class="property-item">
-              <a href="{{ route('detail.produk') }}" class="property-link">
-                <div class="property-image-wrapper">
-                  <img src="{{ asset('aset/image/wedding-4.jpg') }}" alt="Dekorasi Elegant" class="img-fluid">
-                </div>
-              </a>
-              <div class="property-details">
-                <div class="property-header">
-                  <div class="property-price">Rp 18.000.000</div>
-                </div>
-                <h4 class="property-title">Paket Dekorasi Elegant</h4>
-                <div class="property-specs">
-                  <div class="spec-item">
-                    <i class="bi bi-flower3"></i>
-                    <span>Bunga Segar & Ornamen</span>
-                  </div>
-                  <div class="spec-item">
-                    <i class="bi bi-columns-gap"></i>
-                    <span>Pelaminan Modern</span>
-                  </div>
-                  <div class="spec-item">
-                    <i class="bi bi-lightbulb"></i>
-                    <span>Penerangan Artistik</span>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
-
-          <!-- Paket Premium -->
-          <div class="col-lg-4 col-md-6">
-            <div class="property-item">
-              <a href="{{ route('detail.produk') }}" class="property-link">
-                <div class="property-image-wrapper">
-                  <img src="{{ asset('aset/image/wedding-6.jpg') }}" alt="Dekorasi Premium" class="img-fluid">
-                </div>
-              </a>
-              <div class="property-details">
-                <div class="property-header">
-                  <div class="property-price">Rp 30.000.000</div>
-                </div>
-                <h4 class="property-title">Paket Dekorasi Premium</h4>
-                <div class="property-specs">
-                  <div class="spec-item">
-                    <i class="bi bi-stars"></i>
-                    <span>Pelaminan Megah Custom</span>
-                  </div>
-                  <div class="spec-item">
-                    <i class="bi bi-tree"></i>
-                    <span>Bunga & Ornamen Eksklusif</span>
-                  </div>
-                  <div class="spec-item">
-                    <i class="bi bi-lightning-charge"></i>
-                    <span>Penerangan & Efek Khusus</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
 

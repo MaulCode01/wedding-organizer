@@ -40,32 +40,32 @@ class PageClientController extends Controller
         $hero->label    = $request->label;
 
         if ($request->hasFile('image_1')) {
-            if ($hero->image_1 && file_exists(public_path('Heroimg/' . $hero->image_1))) {
-                unlink(public_path('Heroimg/' . $hero->image_1));
+            if ($hero->image_1 && file_exists(public_path('aset/upload' . $hero->image_1))) {
+                unlink(public_path('aset/upload' . $hero->image_1));
             }
 
             $imageName1 = time() . '_1.' . $request->image_1->extension();
-            $request->image_1->move(public_path('Heroimg/'), $imageName1);
+            $request->image_1->move(public_path('aset/upload'), $imageName1);
             $hero->image_1 = $imageName1;
         }
 
         if ($request->hasFile('image_2')) {
-            if ($hero->image_2 && file_exists(public_path('Heroimg/' . $hero->image_2))) {
-                unlink(public_path('Heroimg/' . $hero->image_2));
+            if ($hero->image_2 && file_exists(public_path('aset/upload' . $hero->image_2))) {
+                unlink(public_path('aset/upload' . $hero->image_2));
             }
 
             $imageName2 = time() . '_2.' . $request->image_2->extension();
-            $request->image_2->move(public_path('Heroimg/'), $imageName2);
+            $request->image_2->move(public_path('aset/upload'), $imageName2);
             $hero->image_2 = $imageName2;
         }
 
         if ($request->hasFile('image_3')) {
-            if ($hero->image_3 && file_exists(public_path('Heroimg/' . $hero->image_3))) {
-                unlink(public_path('Heroimg/' . $hero->image_3));
+            if ($hero->image_3 && file_exists(public_path('aset/upload' . $hero->image_3))) {
+                unlink(public_path('aset/upload' . $hero->image_3));
             }
 
             $imageName3 = time() . '_3.' . $request->image_3->extension();
-            $request->image_3->move(public_path('Heroimg/'), $imageName3);
+            $request->image_3->move(public_path('aset/upload'), $imageName3);
             $hero->image_3 = $imageName3;
         }
 
@@ -111,26 +111,24 @@ class PageClientController extends Controller
         $About->kontak    = $request->kontak;
 
         if ($request->hasFile('image_1')) {
-            if ($About->image_1 && file_exists(public_path('Aboutimg/' . $About->image_1))) {
-                unlink(public_path('Aboutimg/' . $About->image_1));
+            if ($About->image_1 && file_exists(public_path('aset/upload' . $About->image_1))) {
+                unlink(public_path('aset/upload' . $About->image_1));
             }
 
             $imageName1 = time() . '_1.' . $request->image_1->extension();
-            $request->image_1->move(public_path('Aboutimg/'), $imageName1);
+            $request->image_1->move(public_path('aset/upload'), $imageName1);
             $About->image_1 = $imageName1;
         }
 
         if ($request->hasFile('image_2')) {
-            if ($About->image_2 && file_exists(public_path('Aboutimg/' . $About->image_2))) {
-                unlink(public_path('Aboutimg/' . $About->image_2));
+            if ($About->image_2 && file_exists(public_path('aset/upload' . $About->image_2))) {
+                unlink(public_path('aset/upload' . $About->image_2));
             }
 
             $imageName2 = time() . '_2.' . $request->image_2->extension();
-            $request->image_2->move(public_path('Aboutimg/'), $imageName2);
+            $request->image_2->move(public_path('aset/upload'), $imageName2);
             $About->image_2 = $imageName2;
         }
-
-
 
         $About->save();
 

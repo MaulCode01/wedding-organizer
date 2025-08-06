@@ -4,11 +4,10 @@
 <section id="home-about" class="home-about section">
     <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-5">
-
             <div class="col-lg-5" data-aos="zoom-in" data-aos-delay="200">
                 <div class="image-gallery">
                     <div class="primary-image">
-                        @if(!empty($content->image_konten) && file_exists(public_path('storage/'.$content->image_konten)))
+                        @if(!empty($content->image_konten) && file_exists(public_path('aset/upload' . $content->image_konten)))
                             <img src="{{ asset('storage/'.$content->image_konten) }}" alt="{{ $content->judul_konten }}" class="img-fluid">
                         @else
                             <img src="{{ asset('aset/image/wedding-2.jpg') }}" alt="Default Image" class="img-fluid">
@@ -56,9 +55,13 @@
                 @forelse($packages as $package)
                     <div class="col-lg-4 col-md-6">
                         <div class="property-item">
-                            <a href="{{ route('detail.produk', $package->id) }}" class="property-link">
+                            <a href="{{ route('admin.detail.produk', $package->package_key) }}" class="property-link">
                                 <div class="property-image-wrapper">
-                                    <img src="{{ asset($package->content->image_konten ?? 'aset/image/wedding-2.jpg') }}" alt="{{ $package->nama_paket }}" class="img-fluid">
+                                    @if(!empty($package->image_package) && file_exists(public_path('aset/upload' . $package->image_package)))
+                                        <img src="{{ asset('aset/upload'. $package->image_package) }}" alt="{{ $package->nama_paket }}" class="img-fluid">
+                                    @else
+                                        <img src="{{ asset('aset/image/wedding-2.jpg') }}" alt="Default Image" class="img-fluid">
+                                    @endif
                                 </div>
                             </a>
                             <div class="property-details">
@@ -67,7 +70,7 @@
                                 </div>
                                 <h4 class="property-title">{{ $package->nama_paket }}</h4>
                                 <div class="property-specs">
-                                    @if(!empty($package->fitur))
+                                    @if(!empty($package->fitur) && is_array($package->fitur))
                                         @foreach($package->fitur as $fitur)
                                             <div class="spec-item">
                                                 <i class="bi bi-check-circle"></i>

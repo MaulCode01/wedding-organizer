@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\admin\crud;
 
 use App\Http\Controllers\Controller;
-use App\Models\product\ProductPackage as ProductProductPackage;
 use Illuminate\Http\Request;
 use App\Models\product\ProductPackage;
 use App\Models\product\ProdukContentModel;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 use function App\Helper\path_view;
 
@@ -24,30 +23,35 @@ class ProductPackageController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'content_id'   => 'required|exists:product_content,id',
-            'nama_paket'   => 'required|string|max:255',
-            'harga'        => 'required|numeric|min:1000',
-            'fitur'        => 'nullable|string',
+            'content_id'    => 'required|exists:product_content,id',
+            'nama_paket'    => 'required|string|max:255',
+            'harga'         => 'required|string',
+            'fitur'         => 'nullable|string',
             'image_package' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
         $fiturPackage = $request->fitur
-        ? array_map('trim', explode(',', $request->fitur))
-        : [];
+            ? array_map('trim', explode(',', $request->fitur))
+            : [];
 
-        $harga = str_replace('.', '', $request->harga[0]);
+        $harga = str_replace('.', '', $request->harga);
 
-        $imagePath = null;
+        $imageContent = null;
         if ($request->hasFile('image_package')) {
-            $imagePath = $request->file('image_package')->store('contents', 'public');
+            $imageName1 = time() . '_image_package.' . $request->image_package->extension();
+            $request->image_package->move(public_path('aset/upload'), $imageName1);
+            $imageContent = $imageName1;
         }
+
+        $kategori = ProdukContentModel::where('id', $validated['content_id'])->value('kategori');
 
         ProductPackage::create([
             'content_id'    => $validated['content_id'],
             'nama_paket'    => $validated['nama_paket'],
+            'package_key'   => str::slug($kategori) . '-' . uniqid(),
             'harga'         => $harga,
-            'fitur'         => $fiturPackage,
-            'image_package' => $imagePath
+            'fitur'         => json_encode($fiturPackage),
+            'image_package' => $imageContent
         ]);
 
         return redirect()->route('admin.produk.dashboard')->with('success', 'Paket berhasil ditambahkan');
@@ -64,20 +68,37 @@ class ProductPackageController extends Controller
     {
         $package = ProductPackage::findOrFail($id);
 
-        $request->validate([
-            'nama_paket' => 'required|string|max:255',
-            'harga' => 'required|numeric',
-            'fitur' => 'nullable|json',
+        $validated = $request->validate([
+            'nama_paket'    => 'required|string|max:255',
+            'harga'         => 'required|string',
+            'fitur'         => 'nullable|string',
+            'image_package' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
+        $fiturPackage = $request->fitur
+            ? array_map('trim', explode(',', $request->fitur))
+            : [];
+
+        $imageContent = $package->image_package;
+        if ($request->hasFile('image_package')) {
+            if ($imageContent && file_exists(public_path('aset/upload/' . $imageContent))) {
+                unlink(public_path('aset/upload/' . $imageContent));
+            }
+            $imageName1 = time() . '_image_package.' . $request->image_package->extension();
+            $request->image_package->move(public_path('aset/upload'), $imageName1);
+            $imageContent = $imageName1;
+        }
+
         $package->update([
-            'nama_paket' => $request->nama_paket,
-            'harga' => $request->harga,
-            'fitur' => $request->fitur,
+            'nama_paket'    => $validated['nama_paket'],
+            'harga'         => $validated['harga'],
+            'fitur'         => json_encode($fiturPackage),
+            'image_package' => $imageContent,
         ]);
 
         return redirect()->route('admin.produk.dashboard')->with('success', 'Paket berhasil diperbarui.');
     }
+
 
     public function destroy($id)
     {

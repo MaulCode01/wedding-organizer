@@ -108,7 +108,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="{{ request()->routeIs() ? 'active' : '' }}">
+                <a href="{{ route('admin.show.booking') }}" class="{{ request()->routeIs('admin.show.booking') ? 'active' : '' }}">
                     <i class="bi bi-circle"></i><span>Booking Management</span>
                 </a>
             </li>
