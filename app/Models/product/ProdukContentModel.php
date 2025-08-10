@@ -20,7 +20,8 @@ class ProdukContentModel extends Model
     ];
 
     protected $casts = [
-        'fitur' => 'array',
+        'fitur_1' => 'array',
+        'fitur_2' => 'array',
     ];
 
     public function packages()

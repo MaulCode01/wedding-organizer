@@ -9,6 +9,7 @@
     <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('aset/css/client/style-page.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
 
     <title>{{ $title }}</title>
 </head>
@@ -26,6 +27,7 @@
 <script src="{{ asset('assets/vendor/aos/aos.js') }}" defer></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="{{ asset('aset/js/script-admin.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 
 <script>

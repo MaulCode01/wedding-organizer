@@ -32,11 +32,11 @@ class AkunController extends Controller
 
     public function storeAdmin(Request $request){
         $validated = $request->validate([
-            'username' => 'required|string|max:50',
+            'nama_lengkap' => 'required|string|max:50',
             'email' => 'required|email|unique:auth,email',
             'password' => 'required|min:8'
         ], [
-            'username.required' => 'Username tidak boleh kosong',
+            'nama_lengkap.required' => 'Silahkan masukan Nama Lengkap',
             'email.required' => 'Username tidak boleh kosong',
             'password.required' => 'Username tidak boleh kosong',
             'username.max' => 'Username tidak boleh lebih dari 100 karater',
@@ -44,8 +44,8 @@ class AkunController extends Controller
             'password.min' => 'Password tidak boleh kurang dari 8 karakter',
         ]);
 
-        $acountAdmin = AuthModel::create([
-            'username' => $validated['username'],
+        AuthModel::create([
+            'nama_lengkap' => $validated['nama_lengkap'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role' => 'admin',
@@ -57,15 +57,17 @@ class AkunController extends Controller
 
 
     public function editAdmin(Request $request, $id){
-        $validated = $request->validate([
-            'username' => 'required|string|max:50',
-            'email' => 'required|email|unique:auth,email',
+        $request->validate([
+            'nama_lengkap' => 'required|string|max:50',
+            'email' => 'nullable|email|unique:auth,email,' . $id,
             'password' => 'nullable|min:8'
+        ], [
+            'nama_lengkap.required' => 'Masukan Nama Lengkap yang baru'
         ]);
 
         $acountAdmin = AuthModel::findOrFail($id);
-        $acountAdmin->update([
-        'username' => $request->username,
+        $acountAdmin->update(attributes: [
+        'nama_lengkap' => $request->nama_lengkap,
         'email' => $request->email,
         'password' => $request->filled('password')
             ? bcrypt($request->password)

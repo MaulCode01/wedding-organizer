@@ -44,7 +44,7 @@
                             if(substr($waNumber, 0, 1) === '0') {
                                 $waNumber = '62'.substr($waNumber, 1);
                             }
-                            $waMessage = "Halo {$data->nama_lengkap}, kami dari Wedding Organizer Diary Project ingin mengkonfirmasi Konsultasi Anda dengan kami pada tanggal ".\Carbon\Carbon::parse($data->tanggal_acara)->format('d-m-Y').". Lokasi: {$data->lokasi_acara}, Ada yang ingin ditanyakan?";
+                            $waMessage = "Halo {$data->nama_lengkap}, kami dari Wedding Organizer Diary Project ingin mengkonfirmasi Pertanyaan Anda dengan kami pada tanggal ".\Carbon\Carbon::parse($data->tanggal_acara)->format('d-m-Y').". Lokasi: {$data->lokasi_acara}, {$data->catatan}";
                             $waLink = "https://wa.me/{$waNumber}?text=".urlencode($waMessage);
                         @endphp
 

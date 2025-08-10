@@ -17,7 +17,7 @@ class ProductContentSeeder extends Seeder
             'kategori' => 'Wedding',
             'judul_konten' => 'Paket Pernikahan Elegan',
             'deskripsi_konten' => 'Paket wedding lengkap dengan dekorasi, MUA, dan dokumentasi.',
-            'fitur' => ['Dekorasi Bunga Premium', 'MUA Profesional', 'Fotografer 2 Orang'],
+            'fitur_1' => ['Dekorasi Bunga Premium', 'MUA Profesional', 'Fotografer 2 Orang'],
             'image_konten' => 'wedding.jpg',
         ]);
 
@@ -25,7 +25,7 @@ class ProductContentSeeder extends Seeder
             'kategori' => 'Prewed',
             'judul_konten' => 'Paket Prewedding Romantis',
             'deskripsi_konten' => 'Paket foto prewedding di lokasi pilihan Anda.',
-            'fitur' => ['Makeup Ringan', '2 Lokasi Foto', 'Album Cetak 20 Halaman'],
+            'fitur_1' => ['Makeup Ringan', '2 Lokasi Foto', 'Album Cetak 20 Halaman'],
             'image_konten' => 'prewed.jpg',
         ]);
 
@@ -33,7 +33,7 @@ class ProductContentSeeder extends Seeder
             'kategori' => 'Dekorasi',
             'judul_konten' => 'Dekorasi Mewah',
             'deskripsi_konten' => 'Dekorasi elegan untuk resepsi pernikahan Anda.',
-            'fitur' => ['Backdrop Bunga', 'Panggung Pelaminan', 'Lighting Premium'],
+            'fitur_1' => ['Backdrop Bunga', 'Panggung Pelaminan', 'Lighting Premium'],
             'image_konten' => 'dekorasi.jpg',
         ]);
 
@@ -41,7 +41,7 @@ class ProductContentSeeder extends Seeder
             'kategori' => 'MUA',
             'judul_konten' => 'MUA Profesional',
             'deskripsi_konten' => 'Makeup artist terbaik untuk hari istimewa Anda.',
-            'fitur' => ['Makeup Pengantin', 'Hairdo Modern', 'Touch Up Selama Acara'],
+            'fitur_1' => ['Makeup Pengantin', 'Hairdo Modern', 'Touch Up Selama Acara'],
             'image_konten' => 'mua.jpg',
         ]);
 
@@ -49,7 +49,7 @@ class ProductContentSeeder extends Seeder
             'kategori' => 'Dokumentasi',
             'judul_konten' => 'Dokumentasi Lengkap',
             'deskripsi_konten' => 'Abadikan momen berharga Anda dengan dokumentasi profesional.',
-            'fitur' => ['Video Cinematic', 'Fotografer 3 Orang', 'Drone Footage'],
+            'fitur_1' => ['Video Cinematic', 'Fotografer 3 Orang', 'Drone Footage'],
             'image_konten' => 'dokumentasi.jpg',
         ]);
     }

@@ -34,61 +34,59 @@
                     </ul>
                 </li>
 
+                @guest
                 <li>
                     <a href="{{ route('page.contact') }}"
                     class="{{ request()->routeIs('page.contact') ? 'active' : '' }}">
                     Kontak
                     </a>
                 </li>
-                @guest
-                    <li>
-                        <a href="{{ route('auth.show.login') }}" class="btn-cta">
-                            <span>Sign In</span>
-                            <i class="bi bi-box-arrow-in-right"></i>
-                        </a>
-                    </li>
+
+                <li>
+                    <a href="{{ route('auth.show.login') }}" class="btn-cta">
+                        <span>Sign In</span>
+                        <i class="bi bi-box-arrow-in-right"></i>
+                    </a>
+                </li>
                 @endguest
 
                 @auth
                     @if(Auth::check() && Auth::user()->role === 'client')
                         <li class="nav-item dropdown pe-3">
                             <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" id="userDropdown">
-                                <img src="{{ Auth::user()->image ?? asset('aset/image/icon-guest.jpg') }}"
+                                <img src="{{ Auth::user()->image ?? asset('aset/image/icon-guest.png') }}"
                                     alt="Profile" class="rounded-circle" width="40" height="40">
                                 <span class="d-none d-md-block ps-2">
-                                    {{ Auth::user()->username }}
+                                    {{ Auth::user()->nama_lengkap }}
                                 </span>
                                 <i class="bi bi-caret-down-fill arrow ms-1"></i>
                             </a>
 
                             <ul class="dropdown-menu p-3 text-center" id="userDropdownMenu">
                                 <li class="mb-2">
-                                    <h6 class="mb-0 text-dark">{{ Auth::user()->username }}</h6>
+                                    <h6 class="mb-0 text-dark">{{ Auth::user()->nama_lengkap }}</h6>
                                     <small class="text-muted">{{ Auth::user()->role }}</small>
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    <a href="{{ route('client.profile') }}" class="dropdown-item d-flex align-items-center justify-content-start gap-2">
+                                    <a href="{{ route('client.profile', Auth::user()->id ) }}" class="dropdown-item d-flex align-items-center justify-content-start gap-2">
                                         <i class="bi bi-person"></i>
                                         <span>Profile Saya</span>
                                     </a>
                                 </li>
+                                <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    <a href="{{ route('client.produk.checkout') }}" class="dropdown-item d-flex align-items-center justify-content-start gap-2">
+                                    <a href="{{ route('client.produk.checkout', Auth::user()->id) }}" class="dropdown-item d-flex align-items-center justify-content-start gap-2">
                                         <i class="bi bi-cart-check"></i>
                                         <span>Product Saya</span>
                                     </a>
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    <form method="POST" action="{{ route('auth.logout') }}" class="m-0">
-                                        @csrf
-                                        <button type="submit"
-                                            class="dropdown-item d-flex align-items-center justify-content-start gap-2 text-danger">
-                                            <i class="bi bi-box-arrow-right"></i>
-                                            <span>Logout</span>
-                                        </button>
-                                    </form>
+                                    <a href="#" class="dropdown-item d-flex align-items-center justify-content-start gap-2 text-danger" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                                        <i class="bi bi-box-arrow-right"></i>
+                                        <span>Logout</span>
+                                    </a>
                                 </li>
                             </ul>
 
@@ -100,3 +98,25 @@
         </nav>
     </div>
 </header>
+
+
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header text-white">
+                <h5 class="modal-title" id="logoutModalLabel">Konfirmasi Logout</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Tutup"></button>
+            </div>
+            <div class="modal-body">
+                Apakah Anda yakin ingin keluar dari akun ini?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <form method="POST" action="{{ route('auth.logout') }}" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Ya, Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

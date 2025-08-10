@@ -70,8 +70,8 @@
                                 </div>
                                 <h4 class="property-title">{{ $package->nama_paket }}</h4>
                                 <div class="property-specs">
-                                    @if(!empty($package->fitur) && is_array($package->fitur))
-                                        @foreach($package->fitur as $fitur)
+                                    @if(!empty($package->fitur_1) && is_array($package->fitur_1))
+                                        @foreach($package->fitur_1 as $fitur)
                                             <div class="spec-item">
                                                 <i class="bi bi-check-circle"></i>
                                                 <span>{{ $fitur }}</span>

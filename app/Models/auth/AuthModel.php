@@ -2,6 +2,7 @@
 
 namespace App\Models\auth;
 
+use App\Models\admin\BookingModel;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,10 +20,17 @@ class AuthModel extends Authenticatable
     protected $primaryKey = 'id';
     public $timestamps = true;
     protected $fillable = [
-        'username',
+        'nama_lengkap',
         'email',
         'password',
         'image',
-        'role'
+        'role',
+        'kontak',
+        'alamat',
+        'about_me'
     ];
+
+    public function userBooking() {
+        return $this->hasMany(BookingModel::class);
+    }
 }

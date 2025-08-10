@@ -45,14 +45,13 @@
                     <td>{{ $c->judul_konten }}</td>
                     <td>{{ $c->deskripsi_konten }}</td>
                     <td>
-                        @if(!empty($c->fitur))
-                            <ul class="mb-0">
-                                @foreach($c->fitur as $f)
-                                    <li>{{ $f }}</li>
-                                @endforeach
-                            </ul>
-                        @else
-                            <em>-</em>
+                        @if(!empty($package->fitur_1) && is_array($package->fitur_1))
+                            @foreach($package->fitur_1 as $fitur)
+                                <div class="spec-item">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>{{ $fitur }}</span>
+                                </div>
+                            @endforeach
                         @endif
                     </td>
                     <td>
@@ -102,8 +101,8 @@
                     <td>Rp {{ number_format($pk->harga, 0, ',', '.') }}</td>
                     <td>{{ $pk->content->judul_konten ?? '-' }}</td>
                     <td>
-                        @if(!empty($pk->fitur))
-                            @php $fiturList = is_array($pk->fitur) ? $pk->fitur : json_decode($pk->fitur, true); @endphp
+                        @if(!empty($pk->fitur_1))
+                            @php $fiturList = is_array($pk->fitur_1) ? $pk->fitur_1 : json_decode($pk->fitur_1, true); @endphp
                             <ul class="mb-0">
                                 @foreach($fiturList as $f)
                                     <li>{{ $f }}</li>

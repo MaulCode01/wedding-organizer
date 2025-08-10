@@ -14,18 +14,20 @@ class ProductPackage extends Model
     protected $table = 'product_packages';
     protected $fillable = [
     'content_id',
+    'image_package',
     'nama_paket',
     'package_key',
     'harga',
-    'fitur',
-    'image_package',
+    'fitur_1',
+    'fitur_2',
     'description_content',
-    'fitur_detail'
+
 ];
 
 
     protected $casts = [
-        'fitur' => 'array',
+        'fitur_1' => 'array',
+        'fitur_2' => 'array',
     ];
 
     public function content()

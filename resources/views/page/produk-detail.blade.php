@@ -7,16 +7,14 @@
     <nav class="breadcrumbs">
         <ol>
         <li><a href="{{ route('page.hero') }}">Home</a></li>
-        <li class="current">Property Details</li>
+        <li class="current">Product Detail</li>
         </ol>
     </nav>
     </div>
 </div>
 
 <section id="property-details" class="property-details section">
-
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-
         <div class="row">
           <div class="col-lg-7">
             <div class="property-hero mb-5" data-aos="fade-up" data-aos-delay="200">
@@ -38,115 +36,57 @@
                       }
                     }
                   </script>
-                  <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                      <img src="{{ asset('assets/img/real-estate/property-exterior-7.webp') }}" class="img-fluid hero-image" alt="Property Main Image">
-                      <div class="hero-overlay">
-                        <button class="virtual-tour-btn">
-                          <i class="bi bi-play-circle"></i>
-                          Virtual Tour
-                        </button>
-                      </div>
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="{{ asset(!empty($dataProduct->image_package) ? 'aset/upload/' . $dataProduct->image_package : 'aset/image/wedding-2.jpg') }}" class="img-fluid hero-image" alt="Property Main Image">
+                        </div>
                     </div>
-                    <div class="swiper-slide">
-                      <img src="{{ asset('assets/img/real-estate/property-interior-7.webp') }}" class="img-fluid hero-image" alt="Interior View">
-                    </div>
-                  </div>
                 </div>
-              </div>
-            </div><!-- End Property Hero -->
+            </div>
+        </div><!-- End Property Hero -->
 
             <!-- Property Information -->
             <div class="property-info mb-5" data-aos="fade-up" data-aos-delay="300">
               <div class="property-header">
-                <h1 class="property-title">Executive Penthouse with City Views</h1>
+                <h1 class="property-title">{{ $dataProduct->nama_paket }}</h1>
               </div>
 
               <div class="pricing-section">
                 <div class="price-breakdown">
                   <span class="available">Untuk Harga mulai dari</span>
                 </div>
-                <div class="main-price">$4,850</div>
-              </div>
-
-              <div class="quick-stats">
-                <div class="stat-grid">
-                  <div class="stat-card">
-                    <div class="stat-icon">
-                      <i class="bi bi-house"></i>
-                    </div>
-                    <div class="stat-content">
-                      <span class="stat-number">3</span>
-                      <span class="stat-label">Bedrooms</span>
-                    </div>
-                  </div>
-                  <div class="stat-card">
-                    <div class="stat-icon">
-                      <i class="bi bi-droplet"></i>
-                    </div>
-                    <div class="stat-content">
-                      <span class="stat-number">2.5</span>
-                      <span class="stat-label">Bathrooms</span>
-                    </div>
-                  </div>
-                  <div class="stat-card">
-                    <div class="stat-icon">
-                      <i class="bi bi-arrows-angle-expand"></i>
-                    </div>
-                    <div class="stat-content">
-                      <span class="stat-number">1,890</span>
-                      <span class="stat-label">Sq Ft</span>
-                    </div>
-                  </div>
-                  <div class="stat-card">
-                    <div class="stat-icon">
-                      <i class="bi bi-car-front"></i>
-                    </div>
-                    <div class="stat-content">
-                      <span class="stat-number">2</span>
-                      <span class="stat-label">Parking</span>
-                    </div>
-                  </div>
-                  <div class="stat-card">
-                    <div class="stat-icon">
-                      <i class="bi bi-building"></i>
-                    </div>
-                    <div class="stat-content">
-                      <span class="stat-number">15th</span>
-                      <span class="stat-label">Floor</span>
-                    </div>
-                  </div>
-                </div>
+                <div class="main-price">Rp {{ number_format($dataProduct->harga, '0', ',', '.')  }}</div>
               </div>
             </div>
 
             <!-- Description & Features -->
             <div class="property-details mb-5" data-aos="fade-up" data-aos-delay="400">
-              <h3>Property Description</h3>
-              <p>Experience luxury living in this stunning penthouse apartment featuring panoramic city views and premium finishes throughout. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-              <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-
+              <h3>Deskripsi Paket</h3>
+              <p>{{ $dataProduct->description_content }}</p>
               <div class="features-grid mt-4">
                 <div class="row">
                   <div class="col-md-6">
-                    <h5>Interior Features</h5>
+                    <h5>Fitur Utama</h5>
                     <ul class="feature-list">
-                      <li><i class="bi bi-check2"></i> Floor-to-ceiling windows</li>
-                      <li><i class="bi bi-check2"></i> Hardwood flooring</li>
-                      <li><i class="bi bi-check2"></i> Gourmet kitchen</li>
-                      <li><i class="bi bi-check2"></i> In-unit washer/dryer</li>
-                      <li><i class="bi bi-check2"></i> Walk-in closets</li>
+                      @if(!empty($dataProduct->fitur_1) && is_array($dataProduct->fitur_1))
+                        @foreach($dataProduct->fitur_1 as $fitur)
+                            <li><i class="bi bi-check2"></i> {{ $fitur }}</li>
+                        @endforeach
+                        @else
+                            <li><em>Tidak ada fitur</em></li>
+                        @endif
                     </ul>
                   </div>
                   <div class="col-md-6">
-                    <h5>Building Amenities</h5>
+                    <h5>Fitur Tambahan</h5>
                     <ul class="feature-list">
-                      <li><i class="bi bi-check2"></i> Rooftop terrace</li>
-                      <li><i class="bi bi-check2"></i> Fitness center</li>
-                      <li><i class="bi bi-check2"></i> 24/7 concierge</li>
-                      <li><i class="bi bi-check2"></i> Indoor pool</li>
-                      <li><i class="bi bi-check2"></i> Pet-friendly</li>
+                        @if(!empty($dataProduct->fitur_2) && is_array($dataProduct->fitur_2))
+                            @foreach($dataProduct->fitur_2 as $fitur)
+                                <li><i class="bi bi-check2"></i> {{ $fitur }}</li>
+                            @endforeach
+                        @else
+                            <li><em>Tidak ada fitur</em></li>
+                        @endif
                     </ul>
                   </div>
                 </div>
@@ -156,29 +96,89 @@
           </div>
 
           <!-- Sidebar -->
-          <div class="col-lg-5">
-            <div class="sticky-sidebar">
-              <div class="actions-card mb-4" data-aos="fade-up" data-aos-delay="250">
-                <div class="action-buttons">
-                  <button class="btn btn-primary btn-lg w-100 mb-3">
-                    <i class="bi bi-wallet"></i>
-                    Beli sekarang
-                  </button>
-                  <div class="row g-2">
-                    <div class="action-buttons">
-                      <button class="btn btn-outline-primary w-100">
-                        <i class="bi bi-chart"></i>
-                        Masukan Keranjang
-                      </button>
+           <div class="col-lg-5">
+                <div class="sticky-sidebar">
+                    <div class="card shadow-lg border-0 mb-4" data-aos="fade-up" data-aos-delay="250">
+                        <div class="card-body text-center">
+
+                            <!-- Judul Paket -->
+                            <h5 class="card-title fw-bold">{{ $dataProduct->nama_paket }}</h5>
+
+                            <!-- Harga -->
+                            <p class="fs-4 text-success fw-bold mb-4">
+                                Rp {{ number_format($dataProduct->harga, 0, ',', '.') }}
+                            </p>
+                            <button class="btn btn-success btn-lg w-100 py-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#bookingModal">
+                                <i class="bi bi-calendar-check me-2"></i> Booking Sekarang
+                            </button>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div><!-- End Quick Actions -->
-
             </div>
-          </div><!-- End Sidebar -->
-
         </div>
       </div>
     </section>
+
+    <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form method="POST" action="#">
+            @csrf
+            <input type="hidden" name="package_id" value="{{ $dataProduct->id }}">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookingModalLabel">Booking {{ $dataProduct->nama_paket }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="alert alert-success">
+                        <strong>{{ $dataProduct->nama_paket }}</strong><br>
+                        Harga: Rp {{ number_format($dataProduct->harga, 0, ',', '.') }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="tanggal_acara" class="form-label">Tanggal Acara</label>
+                        <input type="text" id="tanggal_acara" name="tanggal_acara" class="form-control" placeholder="Pilih tanggal acara" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="catatan" class="form-label">Catatan</label>
+                        <textarea id="catatan" name="catatan" class="form-control" rows="3" placeholder="Tambahkan catatan (opsional)"></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success w-100">Booking Sekarang</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const modal = document.getElementById('bookingModal');
+            let fp = null;
+            const bookedDates = @json($bookedDates ?? []);
+
+            modal.addEventListener('shown.bs.modal', function () {
+                if (fp) fp.destroy();
+                fp = flatpickr("#tanggal_acara", {
+                    dateFormat: "Y-m-d",
+                    disable: bookedDates,
+                    minDate: "today",
+                    locale: "id"
+                });
+            });
+
+            modal.addEventListener('hidden.bs.modal', function () {
+                if (fp) {
+                    fp.destroy();
+                    fp = null;
+                }
+            });
+        });
+    </script>
+
 </x-client-layout>

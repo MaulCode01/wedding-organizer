@@ -43,8 +43,24 @@
         </div>
 
         <div class="mb-3">
-            <label for="fitur" class="form-label">Fitur (Pisahkan dengan koma)</label>
-            <input type="text" name="fitur" id="fitur" class="form-control">
+            <label for="fitur" class="form-label">Fitur Utama (Pisahkan dengan koma)</label>
+            <input type="text" name="fitur_1" id="fitur" class="form-control">
+            @error('fitur')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label for="fitur" class="form-label">Fitur Tambahan (Pisahkan dengan koma)</label>
+            <input type="text" name="fitur_2" id="fitur" class="form-control">
+            @error('fitur')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label for="deskrisi" class="form-label">Deskripsi Paket</label>
+            <textarea name="description_content" id="deskrisi" class="form-control"></textarea>
             @error('fitur')
                 <small class="text-danger">{{ $message }}</small>
             @enderror

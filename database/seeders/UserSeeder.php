@@ -14,25 +14,44 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         AuthModel::create([
-            'username' => 'Adam Panji',
+            'nama_lengkap' => 'Adam Panji',
             'email' => 'admin@gmail',
             'password' => Hash::make('password'),
-            'role' => 'admin'
+            'role' => 'admin',
+            'about_me' => null,
+            'kontak' => null,
+            'alamat' => null,
         ]);
 
         AuthModel::create([
-            'username' => 'Muhammad Wildan',
+            'nama_lengkap' => 'Muhammad Wildan',
             'email' => 'admin2@gmail',
             'password' => Hash::make('password'),
-            'role' => 'admin'
+            'role' => 'admin',
+            'about_me' => null,
+            'kontak' => null,
+            'alamat' => null
         ]);
 
 
         AuthModel::create([
-            'username' => 'Ajis Maulana',
+            'nama_lengkap' => 'Ajis Maulana',
             'email' => 'azis@gmail',
             'password' => Hash::make('password'),
-            'role' => 'client'
+            'role' => 'client',
+            'about_me' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            'kontak' => '6285848783672',
+            'alamat' => 'Jl. Baladewa Utara, Bandung',
+        ]);
+
+        AuthModel::create([
+            'nama_lengkap' => 'Muhammad Khoppid',
+            'email' => 'khopid@gmail',
+            'password' => Hash::make('password'),
+            'role' => 'client',
+            'about_me' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            'kontak' => '62857487833435',
+            'alamat' => 'Jl. Margacinta, Bandung',
         ]);
     }
 }

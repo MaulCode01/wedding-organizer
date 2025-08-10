@@ -11,17 +11,17 @@
               <div class="card mb-3">
                 <div class="card-body">
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
-                    <p class="text-center small">Enter your personal details to create account</p>
+                    <h5 class="card-title text-center pb-0 fs-4">Silahkan Buat Akun baru</h5>
+                    <p class="text-center small">Anda Tertarik untuk membeli paket? Daftarkan diri Anda Sekarang</p>
                   </div>
 
                   <form action="{{ route('auth.register.create') }}" method="POST" class="row g-3 needs-validation" novalidate>
                     @csrf
 
                     <div class="col-12">
-                      <label for="yourUsername" class="form-label">Username</label>
+                      <label for="username" class="form-label">Nama Lengkap</label>
                       <div class="input-group has-validation">
-                        <input type="text" name="username" class="form-control" placeholder="Masukan Username" id="yourUsername" required>
+                        <input type="text" name="nama_lengkap" class="form-control" placeholder="Masukan Nama Lengkap" id="username" required>
                         @error('username')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
@@ -29,16 +29,32 @@
                     </div>
 
                     <div class="col-12">
-                      <label for="yourEmail" class="form-label">Email</label>
-                      <input type="email" name="email" class="form-control" id="yourEmail" placeholder="Masukan Email" required>
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" name="email" class="form-control" id="email" placeholder="Masukan Email" required>
                       @error('email')
                         <p class="text-danger">{{ $message }}</p>
                       @enderror
                     </div>
 
                     <div class="col-12">
-                      <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" placeholder="Masukan password" id="yourPassword" required>
+                      <label for="password" class="form-label">Password</label>
+                      <input type="password" name="password" class="form-control" placeholder="Masukan password" id="password" required>
+                      @error('password')
+                        <p class="text-danger">{{ $message }}</p>
+                      @enderror
+                    </div>
+
+                    <div class="col-12">
+                      <label for="kontak" class="form-label">Kontak</label>
+                      <input type="text" name="kontak" class="form-control" placeholder="Masukan Kontak aktif mis: 62878761563" id="kontak" required>
+                      @error('password')
+                        <p class="text-danger">{{ $message }}</p>
+                      @enderror
+                    </div>
+
+                    <div class="col-12">
+                      <label for="alamat" class="form-label">Alamat Lengkap</label>
+                      <input type="text" name="alamat" class="form-control" placeholder="Masukan Alamat Rumah Anda" id="alamat" required>
                       @error('password')
                         <p class="text-danger">{{ $message }}</p>
                       @enderror

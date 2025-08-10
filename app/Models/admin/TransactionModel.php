@@ -10,6 +10,14 @@ class TransactionModel extends Model
     protected $primaryKey = 'id';
     public $timestamps = true;
     protected $fillable = [
-
+        'booking_id',
+        'jumlah_bayar',
+        'metode_bayar',
+        'bukti_bayar',
+        'status',
     ];
+
+    public function booking() {
+        return $this->belongsTo(BookingModel::class);
+    }
 }

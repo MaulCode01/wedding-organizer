@@ -7,9 +7,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="mb-3">
-                    <label for="username" class="form-label fw-semibold">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username">
-                    @error('username')
+                    <label for="nama_lengkap" class="form-label fw-semibold">Nama Lengkap</label>
+                    <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" placeholder="Masukkan Nama Lengkap">
+                    @error('nama_lengkap')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>

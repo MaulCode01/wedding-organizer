@@ -16,7 +16,7 @@ return new class extends Migration
             $table->enum('kategori', ['Wedding', 'Prewed', 'Dekorasi', 'MUA', 'Dokumentasi']);
             $table->string('judul_konten');
             $table->longText('deskripsi_konten')->nullable();
-            $table->json('fitur')->nullable();
+            $table->json('fitur_1')->nullable();
             $table->string('image_konten')->nullable();
             $table->timestamps();
         });

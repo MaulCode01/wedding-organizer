@@ -8,8 +8,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="mb-3">
-                    <label for="username" class="form-label fw-semibold">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" value="{{ old('username', $dataAdmin->username ) }}">
+                    <label for="nama_lengkap" class="form-label fw-semibold">Nama Lengkap</label>
+                    <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="{{ old('nama_lengkap', $dataAdmin->nama_lengkap ) }}">
                     @error('username')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
@@ -17,7 +17,7 @@
 
                 <div class="mb-3">
                     <label for="email" class="form-label fw-semibold">Email</label>
-                    <input type="email" class="form-control" name="email" value="{{ old('email', $dataAdmin->email ) }}">
+                    <input type="email" class="form-control" name="email" value="{{ old('email', $dataAdmin->email ) }}" readonly>
                     @error('email')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror

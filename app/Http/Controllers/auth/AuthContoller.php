@@ -79,25 +79,33 @@ class AuthContoller extends Controller
 
     public function createAcount(Request $request){
         $validated = $request->validate([
-            'username' => 'required|string|max:50',
+            'nama_lengkap' => 'required|string|max:50',
             'email' => 'required|email|unique:auth,email',
-            'password' => 'required|min:8'
+            'password' => 'required|min:8',
+            'kontak' => 'nullable|numeric',
+            'alamat' => 'nullable',
         ], [
-            'username.required' => 'Username tidak boleh kosong',
+            'nama_lengkap.required' => 'Silahkan Masukan Nama Lengkap dengan benar',
             'email.required' => 'Email tidak boleh kosong',
             'password.required' => 'Password tidak boleh kosong',
-            'username.max' => 'Tidak boleh lebih dari 50 karakter',
+            'kontak.required' => 'Kontak tidak boleh kosong',
+            'alamat.required' => 'Alamat tidak boleh kosong',
+            'nama_lengkap.max' => 'Tidak boleh lebih dari 50 karakter',
             'email.unique' => 'Email yang Anda masukan sudah tersedia',
             'password.min' => 'Password tidak boleh kurang dari 8 karakter',
+            'kontak.numeric' => 'Harus Berupa Angka'
         ]);
 
         $UserCreate = AuthModel::create([
-            'username' => $validated['username'],
+            'nama_lengkap' => $validated['nama_lengkap'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
-            'role' => 'client'
+            'role' => 'client',
+            'kontak' => $validated['kontak'],
+            'alamat' => $validated['alamat'],
         ]);
 
         return redirect()->route('auth.show.login')->with('success', 'Akun Anda berhasil dibuat');
     }
+
 }

@@ -54,7 +54,7 @@
                 @forelse($packages as $package)
                     <div class="col-lg-4 col-md-6">
                         <div class="property-item">
-                            <a href="{{ route('detail.produk', $package->id) }}" class="property-link">
+                            <a href="{{ route('admin.detail.produk', $package->package_key) }}" class="property-link">
                                 <div class="property-image-wrapper">
                                     @if(!empty($package->image_package) && file_exists(public_path('aset/upload' . $package->image_package)))
                                         <img src="{{ asset('aset/upload'. $package->image_package) }}" alt="{{ $package->nama_paket }}" class="img-fluid">
@@ -69,8 +69,8 @@
                                 </div>
                                 <h4 class="property-title">{{ $package->nama_paket }}</h4>
                                 <div class="property-specs">
-                                    @if(!empty($package->fitur) && is_array($package->fitur))
-                                        @foreach($package->fitur as $fitur)
+                                    @if(!empty($package->fitur_1) && is_array($package->fitur_1))
+                                        @foreach($package->fitur_1 as $fitur)
                                             <div class="spec-item">
                                                 <i class="bi bi-check-circle"></i>
                                                 <span>{{ $fitur }}</span>

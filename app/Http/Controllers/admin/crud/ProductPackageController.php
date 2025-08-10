@@ -23,15 +23,21 @@ class ProductPackageController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'content_id'    => 'required|exists:product_content,id',
-            'nama_paket'    => 'required|string|max:255',
-            'harga'         => 'required|string',
-            'fitur'         => 'nullable|string',
-            'image_package' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+            'content_id'            => 'required|exists:product_content,id',
+            'nama_paket'            => 'required|string|max:255',
+            'harga'                 => 'required|string',
+            'fitur_1'               => 'nullable|string',
+            'fitur_2'               => 'nullable|string',
+            'description_content'   => 'nullable|string',
+            'image_package'         => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $fiturPackage = $request->fitur
-            ? array_map('trim', explode(',', $request->fitur))
+        $fiturMain = $request->fitur_1
+            ? array_map('trim', explode(',', $request->fitur_1))
+            : [];
+
+        $fiturAdd = $request->fitur_2
+            ? array_map('trim', explode(',', $request->fitur_2))
             : [];
 
         $harga = str_replace('.', '', $request->harga);
@@ -50,7 +56,9 @@ class ProductPackageController extends Controller
             'nama_paket'    => $validated['nama_paket'],
             'package_key'   => str::slug($kategori) . '-' . uniqid(),
             'harga'         => $harga,
-            'fitur'         => json_encode($fiturPackage),
+            'fitur_1'       => $fiturMain,
+            'fitur_2'       => $fiturAdd,
+            'description_content' => $validated['description_content'],
             'image_package' => $imageContent
         ]);
 
@@ -69,14 +77,20 @@ class ProductPackageController extends Controller
         $package = ProductPackage::findOrFail($id);
 
         $validated = $request->validate([
-            'nama_paket'    => 'required|string|max:255',
-            'harga'         => 'required|string',
-            'fitur'         => 'nullable|string',
+            'nama_paket'            => 'required|string|max:255',
+            'harga'                 => 'required|string',
+            'fitur_1'               => 'nullable|string',
+            'fitur_2'               => 'nullable|string',
+            'description_content'   => 'nullable|string',
             'image_package' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $fiturPackage = $request->fitur
-            ? array_map('trim', explode(',', $request->fitur))
+        $fiturMain = $request->fitur_1
+            ? array_map('trim', explode(',', $request->fitur_1))
+            : [];
+
+        $fiturAdd = $request->fitur_2
+            ? array_map('trim', explode(',', $request->fitur_2))
             : [];
 
         $imageContent = $package->image_package;
@@ -92,8 +106,10 @@ class ProductPackageController extends Controller
         $package->update([
             'nama_paket'    => $validated['nama_paket'],
             'harga'         => $validated['harga'],
-            'fitur'         => json_encode($fiturPackage),
+            'fitur_1'         => json_encode($fiturMain),
+            'fitur_2'         => json_encode($fiturAdd),
             'image_package' => $imageContent,
+            'description_content' => $validated['description_content']
         ]);
 
         return redirect()->route('admin.produk.dashboard')->with('success', 'Paket berhasil diperbarui.');

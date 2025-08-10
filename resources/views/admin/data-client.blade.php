@@ -29,9 +29,9 @@
             <thead class="table-info">
                 <tr>
                     <th scope="col" style="width: 5%;">ID</th>
-                    <th scope="col">Username</th>
+                    <th scope="col">Nama Lengkap</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Role</th>
+                    <th scope="col">Jenis Pengguna</th>
                     <th scope="col" style="width: 20%;">Aksi</th>
                 </tr>
             </thead>
@@ -39,7 +39,7 @@
                 @forelse ($dataAdmin as $index => $acount )
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $acount->username }}</td>
+                        <td>{{ $acount->nama_lengkap }}</td>
                         <td>{{ $acount->email }}</td>
                         <td>{{ $acount->role }}</td>
                         <td>
@@ -74,9 +74,9 @@
             <thead class="table-info">
                 <tr>
                     <th scope="col" style="width: 5%;">ID</th>
-                    <th scope="col">Username</th>
+                    <th scope="col">Nama Lengkap</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Role</th>
+                    <th scope="col">Jenis Pengguna</th>
                     <th scope="col" style="width: 20%;">Aksi</th>
                 </tr>
             </thead>
@@ -84,7 +84,7 @@
                 @forelse ($dataUser as $index => $acount )
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $acount->username }}</td>
+                        <td>{{ $acount->nama_lengkap }}</td>
                         <td>{{ $acount->email }}</td>
                         <td>{{ $acount->role }}</td>
                         <td>

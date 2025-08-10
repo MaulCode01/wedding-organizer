@@ -11,7 +11,7 @@ use function App\Helper\path_view;
 class DetailProductController extends Controller
 {
     public function showDetail($package_key){
-        $dataProduct = ProductPackage::where('package_key', $package_key);
+        $dataProduct = ProductPackage::where('package_key', $package_key)->firstOrFail();
         $view = path_view('page.produk-detail');
         return view($view, compact('dataProduct'));
     }

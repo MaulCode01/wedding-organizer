@@ -28,7 +28,7 @@ class ProductContentController extends Controller
             'kategori' => 'required|in:Wedding,Prewed,Dekorasi,MUA,Dokumentasi',
             'judul_konten' => 'required|string|max:255',
             'deskripsi_konten' => 'nullable|string',
-            'fitur' => 'nullable|string',
+            'fitur_1' => 'nullable|string',
             'image_konten' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
@@ -47,7 +47,7 @@ class ProductContentController extends Controller
             'kategori' => $request->kategori,
             'judul_konten' => $request->judul_konten,
             'deskripsi_konten' => $request->deskripsi_konten,
-            'fitur' => $request->fitur ? json_encode(array_map('trim', explode(',', $request->fitur))) : null,
+            'fitur_1' => $request->fitur ? json_encode(array_map('trim', explode(',', $request->fitur))) : null,
             'image_konten' => $imagePath,
         ]);
 
@@ -69,12 +69,12 @@ class ProductContentController extends Controller
             'kategori' => 'required|string|max:100',
             'judul_konten' => 'required|string|max:255',
             'deskripsi_konten' => 'nullable|string',
-            'fitur' => 'nullable|string',
+            'fitur_1' => 'nullable|string',
             'image_konten' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
-        $fitur = $request->fitur
-        ? array_map('trim', explode(',', $request->fitur))
+        $fitur = $request->fitur_1
+        ? array_map('trim', explode(',', $request->fitur_1))
         : [];
 
         $imageContent = null;
@@ -90,7 +90,7 @@ class ProductContentController extends Controller
             'kategori' => $request->kategori,
             'judul_konten' => $request->judul_konten,
             'deskripsi_konten' => $request->deskripsi_konten,
-            'fitur'         => json_encode($fitur),
+            'fitur_1'         => json_encode($fitur),
             'image_konten' => $imageContent,
         ]);
 

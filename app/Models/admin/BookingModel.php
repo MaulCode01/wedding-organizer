@@ -3,19 +3,32 @@
 namespace App\Models\admin;
 
 use App\BookingStatus;
+use App\Models\auth\AuthModel;
+use App\Models\product\ProductPackage;
 use Illuminate\Database\Eloquent\Model;
 
 class BookingModel extends Model
 {
     protected $table = 'booking';
+    protected $primaryKey = 'id';
+    public $timestamps = true;
     protected $fillable = [
-        'nama_lengkap',
-        'kontak',
-        'lokasi_acara',
+        'user_id',
+        'package_id',
         'tanggal_acara',
-        'kategori',
+        'lokasi_acara',
         'catatan',
         'status',
     ];
+
+    public function user() {
+        return $this->belongsTo(AuthModel::class);
+    }
+    public function package() {
+        return $this->belongsTo(ProductPackage::class, 'package_id');
+    }
+    public function transaction() {
+        return $this->hasOne(TransactionModel::class);
+    }
 
 }
