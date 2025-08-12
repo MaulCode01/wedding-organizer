@@ -137,108 +137,79 @@
         <div class="container section-title" data-aos="fade-up">
             <h2>Paket Favorit Kami</h2>
             <p>Pilihan paket wedding terbaik untuk mewujudkan hari istimewa Anda</p>
-        </div><!-- End Section Title -->
+        </div>
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
             <div class="row gy-5">
-
-            <!-- Featured Package Besar -->
-            <div class="col-lg-8">
-                <div class="featured-property-main" data-aos="zoom-in" data-aos-delay="200">
-                <div class="property-hero">
-                    <img src="{{ asset('aset/image/wedding-6.jpg') }}" alt="Paket Premium Wedding" class="img-fluid">
-                    <div class="property-overlay">
-                    <div class="property-badge-main premium">Paket Premium</div>
-                    <div class="property-stats">
-                        <div class="stat-item">
-                        <i class="bi bi-flower1"></i>
-                        <span>Dekorasi Lengkap</span>
+                @if(isset($topSelling[0]))
+                <div class="col-lg-8">
+                    <div class="featured-property-main" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="property-hero">
+                            <img src="{{ asset('aset/image/' . ($topSelling[0]->image_package ?: 'aset/image/wedding-3.jpg')) }}" alt="{{ $topSelling[0]->nama_paket ?? 'Paket Pernikahan' }}" class="img-fluid">
+                            <div class="property-overlay">
+                                <div class="property-badge-main premium">Paket Premium</div>
+                                <div class="property-stats">
+                                    @if(is_array($topSelling[0]->fitur_1))
+                                        @foreach($topSelling[0]->fitur_1 as $fitur)
+                                            <div class="stat-item">
+                                                <i class="bi bi-check-circle"></i>
+                                                <span>{{ $fitur }}</span>
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                </div>
+                            </div>
                         </div>
-                        <div class="stat-item">
-                        <i class="bi bi-camera"></i>
-                        <span>Dokumentasi Full</span>
+                        <div class="property-hero-content">
+                            <div class="property-header">
+                                <div class="property-info">
+                                    <h2>{{ $topSelling[0]->nama_paket }}</h2>
+                                    <div class="property-address">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                        <span>{{ $topSelling[0]->content->kategori ?? '-' }}</span>
+                                    </div>
+                                </div>
+                                <div class="property-price-main">Rp {{ number_format($topSelling[0]->harga, 0, ',', '.') }}</div>
+                            </div>
+                            <p class="property-description">{{ $topSelling[0]->description_content }}</p>
+                            <div class="property-actions-main">
+                                <div class="property-listing-info">
+                                    <span class="listing-status for-sale">Best Seller</span>
+                                    <span class="listing-date">Promo Bulan Ini</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="stat-item">
-                        <i class="bi bi-people"></i>
-                        <span>500 Undangan</span>
-                        </div>
-                    </div>
                     </div>
                 </div>
-                <div class="property-hero-content">
-                    <div class="property-header">
-                    <div class="property-info">
-                        <h2>Wedding Premium Outdoor</h2>
-                        <div class="property-address">
-                        <i class="bi bi-geo-alt-fill"></i>
-                        <span>Jakarta & Sekitarnya</span>
-                        </div>
-                    </div>
-                    <div class="property-price-main">Rp 75.000.000</div>
-                    </div>
-                    <p class="property-description">
-                    Paket lengkap dengan dekorasi mewah, MUA profesional, dokumentasi video & foto, serta catering untuk 500 undangan.
-                    </p>
-                    <div class="property-actions-main">
-                    <div class="property-listing-info">
-                        <span class="listing-status for-sale">Best Seller</span>
-                        <span class="listing-date">Promo Bulan Ini</span>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <!-- End Featured -->
+                @endif
 
-            <!-- Sidebar Paket -->
-            <div class="col-lg-4">
-                <div class="properties-sidebar">
-
-                <!-- Paket Intimate -->
-                <div class="sidebar-property-card" data-aos="fade-left" data-aos-delay="300">
-                    <div class="sidebar-property-image">
-                    <img src="{{ asset('aset/image/wedding-4.jpg') }}" alt="Paket Intimate Wedding" class="img-fluid">
-                    <div class="sidebar-property-badge hot">Favorit</div>
-                    </div>
-                    <div class="sidebar-property-content">
-                    <h4>Paket Intimate Wedding</h4>
-                    <div class="sidebar-location">
-                        <i class="bi bi-heart"></i>
-                        <span>Private Venue</span>
-                    </div>
-                    <div class="sidebar-specs">
-                        <span><i class="bi bi-people"></i> 100 Tamu</span>
-                        <span><i class="bi bi-music-note-beamed"></i> Live Music</span>
-                    </div>
-                    <div class="sidebar-price-row">
-                        <div class="sidebar-price">Rp 35.000.000</div>
-                    </div>
-                    </div>
-                </div>
-
-                <!-- Paket Prewedding -->
-                <div class="sidebar-property-card" data-aos="fade-left" data-aos-delay="400">
-                    <div class="sidebar-property-image">
-                    <img src="{{ asset('aset/image/wedding-5.jpg') }}" alt="Paket Prewedding" class="img-fluid">
-                    <div class="sidebar-property-badge new">Baru</div>
-                    </div>
-                    <div class="sidebar-property-content">
-                    <h4>Paket Prewedding Eksklusif</h4>
-                    <div class="sidebar-location">
-                        <i class="bi bi-camera"></i>
-                        <span>Indoor & Outdoor</span>
-                    </div>
-                    <div class="sidebar-specs">
-                        <span><i class="bi bi-clock"></i> 6 Jam</span>
-                        <span><i class="bi bi-image"></i> 200 Foto</span>
-                    </div>
-                    <div class="sidebar-price-row">
-                        <div class="sidebar-price">Rp 15.000.000</div>
-                    </div>
+                <div class="col-lg-4">
+                    <div class="properties-sidebar">
+                        @foreach($topSelling->skip(1) as $index => $paket)
+                            <div class="sidebar-property-card" data-aos="fade-left" data-aos-delay="{{ 300 + ($index * 100) }}">
+                                <div class="sidebar-property-image">
+                                    <img src="{{ asset('aset/image/' . $paket->image_package) }}" alt="{{ $paket->nama_paket }}" class="img-fluid">
+                                    <div class="sidebar-property-badge {{ $index == 0 ? 'hot' : 'new' }}">
+                                        {{ $index == 0 ? 'Favorit' : 'Baru' }}
+                                    </div>
+                                </div>
+                                <div class="sidebar-property-content">
+                                    <h4>{{ $paket->nama_paket }}</h4>
+                                    <div class="sidebar-location">
+                                        <i class="bi bi-bookmark"></i>
+                                        <span>{{ $paket->content->kategori ?? '-' }}</span>
+                                    </div>
+                                    <div class="sidebar-specs">
+                                        <span><i class="bi bi-cash"></i> Terjual: {{ $paket->total_terjual }}</span>
+                                    </div>
+                                    <div class="sidebar-price-row">
+                                        <div class="sidebar-price">Rp {{ number_format($paket->harga, 0, ',', '.') }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
-                </div>
-            </div>
             </div>
         </div>
 </section>
