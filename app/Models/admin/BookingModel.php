@@ -19,6 +19,7 @@ class BookingModel extends Model
         'lokasi_acara',
         'catatan',
         'status',
+        'bukti_pembayaran'
     ];
 
     public function user() {
@@ -28,7 +29,8 @@ class BookingModel extends Model
         return $this->belongsTo(ProductPackage::class, 'package_id');
     }
     public function transaction() {
-        return $this->hasOne(TransactionModel::class);
+        return $this->hasOne(TransactionModel::class, 'booking_id', 'id');
     }
+
 
 }

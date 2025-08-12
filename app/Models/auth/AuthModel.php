@@ -3,6 +3,7 @@
 namespace App\Models\auth;
 
 use App\Models\admin\BookingModel;
+use App\Models\client\AboutModel;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,5 +33,9 @@ class AuthModel extends Authenticatable
 
     public function userBooking() {
         return $this->hasMany(BookingModel::class);
+    }
+
+    public function about(){
+        return $this->hasMany(AboutModel::class, 'user_id');
     }
 }

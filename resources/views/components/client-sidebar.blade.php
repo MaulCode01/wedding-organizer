@@ -69,16 +69,16 @@
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    <a href="{{ route('client.profile', Auth::user()->id ) }}" class="dropdown-item d-flex align-items-center justify-content-start gap-2">
-                                        <i class="bi bi-person"></i>
-                                        <span>Profile Saya</span>
+                                    <a href="{{ route('client.produk', Auth::user()->id) }}" class="dropdown-item d-flex align-items-center justify-content-start gap-2">
+                                        <i class="bi bi-cart-check"></i>
+                                        <span>Product Saya</span>
                                     </a>
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    <a href="{{ route('client.produk.checkout', Auth::user()->id) }}" class="dropdown-item d-flex align-items-center justify-content-start gap-2">
-                                        <i class="bi bi-cart-check"></i>
-                                        <span>Product Saya</span>
+                                    <a href="{{ route('client.profile', Auth::user()->id ) }}" class="dropdown-item d-flex align-items-center justify-content-start gap-2">
+                                        <i class="bi bi-person"></i>
+                                        <span>Profile Saya</span>
                                     </a>
                                 </li>
                                 <li><hr class="dropdown-divider"></li>

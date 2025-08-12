@@ -47,7 +47,7 @@ class ProductContentController extends Controller
             'kategori' => $request->kategori,
             'judul_konten' => $request->judul_konten,
             'deskripsi_konten' => $request->deskripsi_konten,
-            'fitur_1' => $request->fitur ? json_encode(array_map('trim', explode(',', $request->fitur))) : null,
+            'fitur_1' => $request->fitur ? json_encode(array_map('trim', explode(',', $request->fitur_1))) : null,
             'image_konten' => $imagePath,
         ]);
 
@@ -90,7 +90,7 @@ class ProductContentController extends Controller
             'kategori' => $request->kategori,
             'judul_konten' => $request->judul_konten,
             'deskripsi_konten' => $request->deskripsi_konten,
-            'fitur_1'         => json_encode($fitur),
+            'fitur_1'         => $fitur,
             'image_konten' => $imageContent,
         ]);
 

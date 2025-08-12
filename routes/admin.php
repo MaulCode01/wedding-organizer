@@ -33,15 +33,20 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/admin/package/create', [ProductPackageController::class, 'create'])->name('admin.package.create');
     Route::post('/admin/package/store', [ProductPackageController::class, 'store'])->name('admin.package.store');
     Route::get('/admin/package/edit/{id}', [ProductPackageController::class, 'edit'])->name('admin.package.edit');
-    Route::put('/admin/package/{id}', [ProductPackageController::class, 'update'])->name('admin.package.update');
+    Route::post('/admin/package/{id}', [ProductPackageController::class, 'updatepackage'])->name('admin.package.update');
     Route::delete('/admin/package/{id}', [ProductPackageController::class, 'destroy'])->name('admin.package.destroy');
 
 
     //Trasaksi
     Route::get('/admin/transaksi/', [TransaksiController::class, 'showTransaksi'])->name('admin.transaksi');
+    Route::post('admin/transaction/konfirmasi/{id}', [TransaksiController::class, 'confirmTrasanction'])->name('admin.transaksi.confirm');
+    Route::get('admin/transaction/kwetansi/{id}', [TransaksiController::class, 'kwetansi'])->name('admin.trasaksi.kwetansi');
+    Route::post('admin/transaction/delete/{id}', [TransaksiController::class, 'destroy'])->name('admin.transaksi.hapus');
 
     // Booking
     Route::get('/admin/booking', [BookingController::class, 'showBooking'])->name('admin.show.booking');
+    Route::post('/admin/booking/{id}', [BookingController::class, 'verify'])->name('admin.booking.verify');
+    Route::post('admin/booking/delete/{id}', [BookingController::class, 'deleteBooking'])->name('admin.booking.delete');
 
     //data Pengguna
     Route::get('/admin-dashboard/data-pengguna', [AkunController::class, 'dataClient'])->name('admin.data-pengguna');

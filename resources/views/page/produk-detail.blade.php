@@ -1,9 +1,25 @@
 <x-client-layout>
 <x-slot:title></x-slot:title>
 
+@if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
+@if(session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
 <div class="page-title light-background">
     <div class="container d-lg-flex justify-content-between align-items-center">
-    <h1 class="mb-2 mb-lg-0">Property Details</h1>
+    <h1 class="mb-2 mb-lg-0">Product Detail</h1>
     <nav class="breadcrumbs">
         <ol>
         <li><a href="{{ route('page.hero') }}">Home</a></li>
@@ -121,10 +137,9 @@
 
     <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <form method="POST" action="#">
+            <form method="POST" action="{{ route('booking.store') }}">
             @csrf
             <input type="hidden" name="package_id" value="{{ $dataProduct->id }}">
-
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="bookingModalLabel">Booking {{ $dataProduct->nama_paket }}</h5>
@@ -140,6 +155,11 @@
                     <div class="mb-3">
                         <label for="tanggal_acara" class="form-label">Tanggal Acara</label>
                         <input type="text" id="tanggal_acara" name="tanggal_acara" class="form-control" placeholder="Pilih tanggal acara" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="lokasi_acara" class="form-label">Lokasi Acara</label>
+                        <input type="text" id="lokasi_acara" name="lokasi_acara" class="form-control" placeholder="Masukan Lokasi Acara" required>
                     </div>
 
                     <div class="mb-3">
@@ -165,7 +185,7 @@
             modal.addEventListener('shown.bs.modal', function () {
                 if (fp) fp.destroy();
                 fp = flatpickr("#tanggal_acara", {
-                    dateFormat: "Y-m-d",
+                    dateFormat: "d-m-y",
                     disable: bookedDates,
                     minDate: "today",
                     locale: "id"

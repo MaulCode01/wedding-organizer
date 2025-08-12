@@ -31,9 +31,13 @@ Route::post('/konsultan/{id}/status', [KonsultanController::class, 'updateStatus
 Route::delete('/konsultan/{id}', [KonsultanController::class, 'deleteConsult'])->name('konsult.destroy');
 
 Route::middleware(['auth', 'role:client'])->group(function(){
-    Route::get('/product/checkout/{id}', [CheckOutController::class, 'checkOut'])->name('client.produk.checkout');
     Route::get('/profile/client/{id}', [ProfileClientController::class, 'showProfile'])->name('client.profile');
     Route::post('/profile/client/update/{id}', [ProfileClientController::class, 'updateProfile'])->name('client.profile.update');
-
     Route::get('/admin/detail-produk/{package_key}', [DetailProductController::class, 'showDetail'])->name('admin.detail.produk');
+
+    Route::get('client/product/{id}', [BookingController::class, 'index'])->name('client.produk');
+    Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
+    Route::post('/booking/upload-bukti', [BookingController::class, 'upload'])->name('booking.upload');
+    Route::patch('/booking/{id}/cancel', [BookingController::class, 'batal'])->name('booking.cancel');
+
 });

@@ -1,5 +1,6 @@
 <x-client-layout>
 <x-slot:title>Wedding Organizer - Home page</x-slot:title>
+
 <main class="main">
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">

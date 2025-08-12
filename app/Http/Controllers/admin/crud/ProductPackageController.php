@@ -72,7 +72,7 @@ class ProductPackageController extends Controller
         return view('admin.crud.produk-package.edit-produk-package', compact('package'));
     }
 
-    public function update(Request $request, $id)
+    public function updatePackage(Request $request, $id)
     {
         $package = ProductPackage::findOrFail($id);
 
@@ -103,11 +103,13 @@ class ProductPackageController extends Controller
             $imageContent = $imageName1;
         }
 
+        $harga = str_replace('.', '', $request->harga);
+
         $package->update([
             'nama_paket'    => $validated['nama_paket'],
-            'harga'         => $validated['harga'],
-            'fitur_1'         => json_encode($fiturMain),
-            'fitur_2'         => json_encode($fiturAdd),
+            'harga'         => $harga,
+            'fitur_1'         => $fiturMain,
+            'fitur_2'         => $fiturAdd,
             'image_package' => $imageContent,
             'description_content' => $validated['description_content']
         ]);

@@ -2,6 +2,7 @@
 
 namespace App\Models\client;
 
+use App\Models\auth\AuthModel;
 use Illuminate\Database\Eloquent\Model;
 
 class AboutModel extends Model
@@ -17,4 +18,8 @@ class AboutModel extends Model
         'image_1',
         'image_2'
     ];
+
+    public function user(){
+        return $this->belongsTo(AuthModel::class, 'user_id');
+    }
 }

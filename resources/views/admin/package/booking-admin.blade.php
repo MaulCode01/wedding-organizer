@@ -25,35 +25,68 @@
         <table class="table table-bordered table-hover align-middle">
             <thead class="table-info">
                 <tr>
-                    <th scope="col" style="width: 5%;">ID</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Role</th>
-                    <th scope="col" style="width: 20%;">Aksi</th>
+                    <th>ID</th>
+                    <th>Nama User</th>
+                    <th>Paket</th>
+                    <th>Tanggal Acara</th>
+                    <th>Status</th>
+                    <th>Bukti Pembayaran</th>
+                    <th style="width: 20%;">Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <a href="#" class="btn btn-sm btn-warning">
-                            <i class="bi bi-pencil-square"></i> Edit
-                        </a>
-                        <form action="#" method="POST" class="d-inline">
-                            @csrf
-                            @method('POST')
-                            <button class="btn btn-sm btn-danger">
-                                <i class="bi bi-trash"></i> Hapus
-                            </button>
-                        </form>
-                    </td>
-                </tr>
+                @forelse($booking as $data)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $data->user->nama_lengkap }}</td>
+                        <td>{{ $data->package->nama_paket }}</td>
+                        <td>{{ \Carbon\Carbon::parse($data->tanggal_acara)->translatedFormat('d F Y') }}</td>
+                        <td>
+                            @if($data->status === 'pending')
+                                <span class="badge bg-warning text-dark">Pending</span>
+                            @elseif($data->status === 'disetujui')
+                                <span class="badge bg-success">disetujui</span>
+                            @elseif($data->status === 'dibatalkan')
+                                <span class="badge bg-danger">dibatalkan</span>
+                            @elseif($data->status === 'selesai')
+                                <span class="badge bg-primary">selesai</span>
+                            @endif
+                        </td>
+                        <td>
+                            @if($data->bukti_pembayaran)
+                                <a href="{{ asset('aset/bukti/' . $data->bukti_pembayaran) }}" target="_blank">Lihat Bukti</a>
+                            @else
+                                <span class="text-muted">Belum Upload</span>
+                            @endif
+                        </td>
+                        <td style="d-flex">
+                            @if($data->bukti_pembayaran && $data->status != 'disetujui')
+                                <form action="{{ route('admin.booking.verify', $data->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success btn-sm">Konfirmasi</button>
+                                </form>
+                            @else
+                                <button class="btn btn-secondary btn-sm" disabled>Konfirmasi</button>
+                            @endif
+
+                            <form action="{{ route('admin.booking.delete', $data->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    <i class="bi bi-trash"></i> Hapus
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="7" class="text-center text-muted">Belum ada booking yang masuk</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
 </div>
+
 
 </x-admin-layout>

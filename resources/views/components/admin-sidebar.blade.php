@@ -90,7 +90,7 @@
 
     {{-- Paket Layanan --}}
     @php
-        $paketActive = request()->routeIs('admin*');
+        $paketActive = request()->routeIs('admin.produk.dashboard') || request()->routeIs('admin.transaksi') || request()->routeIs('admin.show.booking');
     @endphp
     <li class="nav-item">
         <a class="nav-link {{ $paketActive ? '' : 'collapsed' }}" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
@@ -115,7 +115,6 @@
         </ul>
     </li>
 
-    {{-- Other Pages --}}
     <li class="nav-heading">Pages</li>
 
     <li class="nav-item">
